@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct BookDetailView: View {
+    private var volumeInfo: VolumeInfo {
+        book.volumeInfo
+    }
+
     let book: BookViewModel
 
     var body: some View {
@@ -16,41 +20,49 @@ struct BookDetailView: View {
                 AsyncBookImage(book: book)
                     .frame(width: 160.0, height: 240.0)
                     .clipShape(RoundedRectangle.bookCornerRadius)
-
-                VStack {
-                    Text(book.volumeInfo.title)
+                    .frame(maxWidth: .infinity)
+                VStack(spacing: 8) {
+                    Text(volumeInfo.title)
                         .font(.title2.bold())
-                    Text(book.volumeInfo.authors?.first ?? "")
-                    Text(book.volumeInfo.subtitle ?? "")
+                        .multilineTextAlignment(.center)
+                    Text(volumeInfo.authors?.first ?? "")
+                    Text(volumeInfo.subtitle ?? "")
                         .font(.caption.italic())
-                        .multilineTextAlignment(.leading)
+                        .multilineTextAlignment(.center)
+                    Text(volumeInfo.categories?.first ?? "")
                 }
+                .padding()
+
+                VStack(alignment: .leading) {
+                    Text(volumeInfo.printType ?? "Book")
+                    Text("\(volumeInfo.language ?? "en") · \(volumeInfo.publishedDate ?? "22") · \(volumeInfo.pageCount ?? 0) pages")
+                    Spacer()
+                }
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(
+                    RoundedRectangle(cornerRadius: 16.0)
+                        .fill((book.color.isDark ? Color.white : Color.black).opacity(0.2))
+                )
+                .padding()
             }
-            VStack(alignment: .leading) {
-                Text("Book")
-                Text("\(book.volumeInfo.language ?? "das") · \(book.volumeInfo.publishedDate ?? "22")")
-                Spacer()
-            }
-            .padding()
-            .frame(maxWidth: .infinity)
-            .background(
-                RoundedRectangle(cornerRadius: 16.0)
-                    .fill(.red)
-            )
-            .padding()
+            .foregroundStyle(book.color.isDark ? .white : .black)
+            .padding(.vertical)
+            .background(book.color)
 
             VStack(alignment: .leading) {
                 Text("From the publisher")
                     .font(.footnote.bold())
-                Text(book.volumeInfo.description ?? "")
+                Text(volumeInfo.description ?? "")
                     .font(.caption.italic())
                     .multilineTextAlignment(.leading)
             }
-            .padding(.top, 32.0)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding()
 
             Divider()
+                .padding(.horizontal)
         }
-        .padding(.horizontal)
     }
 }
 

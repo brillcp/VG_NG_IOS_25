@@ -50,6 +50,7 @@ struct SearchView<ViewModel: SearchViewModelProtocol>: View {
             .onSubmit(of: .search) {
                 Task { await viewModel.search() }
             }
+            .animation(.default, value: displayMode)
         }
     }
 }
@@ -67,7 +68,7 @@ private extension SearchView {
                     displayMode = .list
                 }
             } label: {
-                Image(systemName: displayMode == .list ?  "rectangle.portrait.on.rectangle.portrait.angled" : "list.bullet")
+                Image(systemName: displayMode == .list ?  "rectangle.portrait.on.rectangle.portrait" : "list.bullet")
             }
         }
         .padding(.horizontal)

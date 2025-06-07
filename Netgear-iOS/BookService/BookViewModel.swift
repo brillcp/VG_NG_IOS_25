@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 final class BookViewModel: ObservableObject {
     private lazy var numberFormatter: NumberFormatter = {
@@ -29,6 +30,10 @@ final class BookViewModel: ObservableObject {
 extension BookViewModel: Identifiable {
     var id: String { book.id }
     var volumeInfo: VolumeInfo { book.volumeInfo }
+    var color: Color {
+        guard let imageData, let color = UIImage(data: imageData)?.averageColor() else { return .black }
+        return color
+    }
 
     var priceString: String? {
         guard let saleInfo = volumeInfo.saleInfo,
