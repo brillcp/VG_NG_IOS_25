@@ -11,29 +11,46 @@ struct BookMetadataSection: View {
     let book: BookViewModel
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            if let type = volumeInfo.printType {
-                Text(type.capitalized)
-            }
+        NavigationStack {
+            VStack(alignment: .leading, spacing: 16.0) {
+                if let type = volumeInfo.printType {
+                    Text(type.capitalized)
+                }
 
-            HStack(spacing: 16.0) {
-                if let language = volumeInfo.language {
-                    Label("\(language)", systemImage: "character.book.closed.fill")
+                HStack(spacing: 16.0) {
+                    if let language = volumeInfo.language {
+                        Label("\(language)", systemImage: "character.book.closed.fill")
+                    }
+                    if let date = volumeInfo.publishedDate {
+                        Label("\(date)", systemImage: "calendar")
+                    }
+                    if let pageCount = volumeInfo.pageCount {
+                        Label("\(pageCount)", systemImage: "book.pages.fill")
+                    }
                 }
-                if let date = volumeInfo.publishedDate {
-                    Label("\(date)", systemImage: "calendar")
+
+                HStack {
+                    navLink(
+                        title: "Preview",
+                        url: volumeInfo.accessInfo?.webReaderLink
+                    )
+                    .buttonStyle(.bordered)
+
+                    navLink(
+                        title: "Buy \(book.priceString ?? "")",
+                        url: volumeInfo.saleInfo?.buyLink
+                    )
+                    .buttonStyle(.borderedProminent)
                 }
-                if let pageCount = volumeInfo.pageCount {
-                    Label("\(pageCount)", systemImage: "book.pages.fill")
-                }
+                .frame(maxWidth: .infinity)
             }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                RoundedRectangle(cornerRadius: 16.0)
+                    .fill((book.color.isDark ? Color.white : Color.black).opacity(0.2))
+            )
         }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            RoundedRectangle(cornerRadius: 16.0)
-                .fill((book.color.isDark ? Color.white : Color.black).opacity(0.2))
-        )
     }
 }
 
@@ -41,6 +58,22 @@ struct BookMetadataSection: View {
 private extension BookMetadataSection {
     var volumeInfo: VolumeInfo {
         book.volumeInfo
+    }
+
+    func navLink(title: String, url: String?) -> some View {
+        NavigationLink {
+            if let url = URL(string: url) {
+                WebView(url: url)
+            }
+        } label: {
+            HStack {
+                Spacer()
+                Text(title)
+                Spacer()
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .disabled(url != nil)
     }
 }
 

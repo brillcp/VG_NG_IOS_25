@@ -24,13 +24,13 @@ struct BookCoverSection: View {
                     Text(author)
                 }
 
+                if let category = volumeInfo.categories?.first {
+                    Text(category)
+                }
+
                 if let subtitle = volumeInfo.subtitle {
                     Text(subtitle)
                         .font(.caption.italic())
-                }
-
-                if let category = volumeInfo.categories?.first {
-                    Text(category)
                 }
 
                 BookMetadataSection(book: book)

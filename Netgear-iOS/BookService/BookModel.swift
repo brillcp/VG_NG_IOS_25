@@ -41,16 +41,7 @@ struct VolumeInfo: Codable {
     let canonicalVolumeLink: String?
     let saleInfo: SaleInfo?
     let searchInfo: SearchInfo?
-}
-
-extension VolumeInfo {
-    var smallThumbnailURL: URL? {
-        URL(string: imageLinks?.smallThumbnail)
-    }
-
-    var thumbnailURL: URL? {
-        URL(string: imageLinks?.thumbnail)
-    }
+    let accessInfo: AccessInfo?
 }
 
 struct IndustryIdentifier: Codable {
@@ -79,7 +70,7 @@ struct SaleInfo: Codable {
     let isEbook: Bool
     let listPrice: Price?
     let retailPrice: Price?
-    let buyLink: URL?
+    let buyLink: String?
     let offers: [Offer]?
 }
 
@@ -99,7 +90,21 @@ struct SearchInfo: Codable {
     let textSnippet: String
 }
 
+struct AccessInfo: Codable {
+    let country: String
+    let textToSpeechPermission: String
+    let webReaderLink: String
+}
+
 extension VolumeInfo {
+    var smallThumbnailURL: URL? {
+        URL(string: imageLinks?.smallThumbnail)
+    }
+
+    var thumbnailURL: URL? {
+        URL(string: imageLinks?.thumbnail)
+    }
+
     static var common: VolumeInfo {
         .init(
             title: "title",
@@ -131,10 +136,15 @@ extension VolumeInfo {
                 isEbook: false,
                 listPrice: nil,
                 retailPrice: .init(amount: 149.99, amountInMicros: 0, currencyCode: "SEK"),
-                buyLink: nil,
+                buyLink: "https://google.com",
                 offers: nil
             ),
-            searchInfo: .init(textSnippet: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+            searchInfo: .init(textSnippet: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+            accessInfo: .init(
+                country: "SE",
+                textToSpeechPermission: "ALLOWED",
+                webReaderLink: "https://google.com"
+            )
         )
     }
 }
