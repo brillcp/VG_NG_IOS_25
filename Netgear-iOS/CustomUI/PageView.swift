@@ -25,6 +25,7 @@ struct PageView: View {
                             .matchedTransitionSource(id: book.id, in: namespace)
                     }
                     .tag(index)
+                    .buttonStyle(ScaleButtonStyle())
                 }
             }
 
