@@ -1,5 +1,5 @@
 //
-//  ListView.swift
+//  BookDetailView.swift
 //  Netgear-iOS
 //
 //  Created by Viktor Gidlöf on 2025-06-07.
@@ -7,20 +7,11 @@
 
 import SwiftUI
 
-struct ListView: View {
-    let books: [Book]
+struct BookDetailView: View {
+    let book: Book
 
     var body: some View {
-        List {
-            ForEach(books) { book in
-                NavigationLink {
-                    BookDetailView(book: book)
-                } label: {
-                    SearchResultRow(book: book)
-                }
-            }
-        }
-        .listStyle(.plain)
+        Text(book.volumeInfo.title)
     }
 }
 
@@ -47,5 +38,5 @@ struct ListView: View {
         canonicalVolumeLink: nil
     )
 
-    ListView(books: [.init(id: "id", volumeInfo: volume)])
+    BookDetailView(book: .init(id: "id", volumeInfo: volume))
 }
