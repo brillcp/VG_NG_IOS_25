@@ -27,7 +27,7 @@ extension GoogleBookAPI: Requestable {
     var parameters: HTTP.Parameters {
         switch self {
         case .search(let q):
-            ["q": q]
+            ["q": q, "maxResults": 20]
         }
     }
 }
