@@ -11,4 +11,9 @@ extension URL {
     static var googleBookAPI: URL {
         URL(string: "https://www.googleapis.com/books/v1/")!
     }
+
+    init?(string str: String?) {
+        guard let str else { return nil }
+        self.init(string: str)
+    }
 }

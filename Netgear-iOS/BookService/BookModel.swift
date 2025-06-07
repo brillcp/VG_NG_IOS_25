@@ -41,6 +41,16 @@ struct VolumeInfo: Codable {
     let canonicalVolumeLink: String?
 }
 
+extension VolumeInfo {
+    var smallThumbnailURL: URL? {
+        URL(string: imageLinks?.smallThumbnail)
+    }
+
+    var thumbnailURL: URL? {
+        URL(string: imageLinks?.thumbnail)
+    }
+}
+
 struct IndustryIdentifier: Codable {
     let type: String
     let identifier: String

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SearchViewModelProtocol: ObservableObject {
-    var books: [Book] { get }
+    var books: [BookViewModel] { get }
     var isLoading: Bool { get }
     var query: String { get set }
     
@@ -19,7 +19,7 @@ protocol SearchViewModelProtocol: ObservableObject {
 final class SearchViewModel {
     private let service = BookService()
 
-    @Published var books: [Book] = []
+    @Published var books: [BookViewModel] = []
     @Published var isLoading = false
     @Published var query = ""
 }

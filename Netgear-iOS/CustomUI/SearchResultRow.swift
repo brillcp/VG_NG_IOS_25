@@ -8,28 +8,22 @@
 import SwiftUI
 
 struct SearchResultRow: View {
-    let book: Book
+    let book: BookViewModel
 
-    var smallThumbnail: URL? {
-        URL(string: book.volumeInfo.imageLinks?.smallThumbnail ?? "")
+    private var volumeInfo: VolumeInfo {
+        book.volumeInfo
     }
 
     var body: some View {
         HStack {
-            AsyncImage(url: smallThumbnail) { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-            } placeholder: {
-                ProgressView()
-            }
-            .frame(width: 64.0, height: 64.0)
+            AsyncBookImage(book: book)
+                .frame(width: 64.0, height: 64.0)
 
             VStack(alignment: .leading) {
-                Text(book.volumeInfo.title)
+                Text(volumeInfo.title)
                     .bold()
-                Text(book.volumeInfo.authors?.first ?? "")
-                Text(book.volumeInfo.categories?.first ?? "")
+                Text(volumeInfo.authors?.first ?? "")
+                Text(volumeInfo.categories?.first ?? "")
                     .foregroundStyle(.secondary)
             }
             .font(.caption)
@@ -61,5 +55,5 @@ struct SearchResultRow: View {
         infoLink: nil,
         canonicalVolumeLink: nil
     )
-    SearchResultRow(book: .init(id: "id", volumeInfo: volume))
+    SearchResultRow(book: .init(book: .init(id: "id", volumeInfo: volume)))
 }

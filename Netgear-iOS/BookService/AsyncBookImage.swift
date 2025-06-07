@@ -1,5 +1,5 @@
 //
-//  BookDetailView.swift
+//  AsyncBookImage.swift
 //  Netgear-iOS
 //
 //  Created by Viktor Gidlöf on 2025-06-07.
@@ -7,11 +7,29 @@
 
 import SwiftUI
 
-struct BookDetailView: View {
-    let book: Book
+struct AsyncBookImage: View {
+    @ObservedObject var book: BookViewModel
 
     var body: some View {
-        Text(book.volumeInfo.title)
+        Group {
+            if let data = book.imageData, let uiImage = UIImage(data: data) {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+            } else {
+                Rectangle()
+                    .fill(Color.gray.opacity(0.3))
+                    .overlay {
+                        ProgressView()
+                    }
+            }
+        }
+        .clipShape(RoundedRectangle.bookCornerRadius)
+        .onAppear {
+            Task {
+                await book.loadThumbnail()
+            }
+        }
     }
 }
 
@@ -39,5 +57,5 @@ struct BookDetailView: View {
         canonicalVolumeLink: nil
     )
 
-    BookDetailView(book: .init(id: "id", volumeInfo: volume))
+    AsyncBookImage(book: .init(book: .init(id: "id", volumeInfo: volume)))
 }

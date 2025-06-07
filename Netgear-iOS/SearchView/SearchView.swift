@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SearchView<ViewModel: SearchViewModelProtocol>: View {
+    @Namespace private var namespace
+
     @State private var displayMode: DisplayMode = .page
     @State private var selectedPage = 0
 
@@ -18,7 +20,7 @@ struct SearchView<ViewModel: SearchViewModelProtocol>: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 displayToggle
                 Divider()

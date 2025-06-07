@@ -8,15 +8,19 @@
 import SwiftUI
 
 struct ListView: View {
-    let books: [Book]
+    @Namespace private var namespace
+
+    let books: [BookViewModel]
 
     var body: some View {
         List {
             ForEach(books) { book in
                 NavigationLink {
                     BookDetailView(book: book)
+                        .navigationTransition(.zoom(sourceID: book.id, in: namespace))
                 } label: {
                     SearchResultRow(book: book)
+                        .matchedTransitionSource(id: book.id, in: namespace)
                 }
             }
         }
@@ -48,5 +52,5 @@ struct ListView: View {
         canonicalVolumeLink: nil
     )
 
-    ListView(books: [.init(id: "id", volumeInfo: volume)])
+    ListView(books: [.init(book: .init(id: "id", volumeInfo: volume))])
 }

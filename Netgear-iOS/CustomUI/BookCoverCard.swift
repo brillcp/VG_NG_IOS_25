@@ -8,26 +8,13 @@
 import SwiftUI
 
 struct BookCoverCard: View {
-    let book: Book
-
-    var thumbnailURL: URL? {
-        URL(string: book.volumeInfo.imageLinks?.thumbnail ?? "")
-    }
+    @ObservedObject var book: BookViewModel
 
     var body: some View {
         VStack(spacing: 24.0) {
-            AsyncImage(url: thumbnailURL) { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .clipped()
-            } placeholder: {
-                ProgressView()
-                    .tint(.white)
-            }
-            .frame(width: 160.0, height: 240.0)
-            .background(Color(.systemGray3))
-            .clipShape(RoundedRectangle(cornerRadius: 16.0))
+            AsyncBookImage(book: book)
+                .frame(width: 160.0, height: 240.0)
+                .clipShape(RoundedRectangle.bookCornerRadius)
 
             Text(book.volumeInfo.title)
                 .font(.title2.bold())
@@ -61,5 +48,5 @@ struct BookCoverCard: View {
         canonicalVolumeLink: nil
     )
 
-    BookCoverCard(book: .init(id: "id", volumeInfo: volume))
+    BookCoverCard(book: .init(book: .init(id: "id", volumeInfo: volume)))
 }

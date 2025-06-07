@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct PageView: View {
-    let books: [Book]
+    @Namespace private var namespace
+
+    let books: [BookViewModel]
     @Binding var selectedPage: Int
     
     var body: some View {
@@ -17,8 +19,10 @@ struct PageView: View {
                 ForEach(Array(books.enumerated()), id: \.element.id) { index, book in
                     NavigationLink {
                         BookDetailView(book: book)
+                            .navigationTransition(.zoom(sourceID: book.id, in: namespace))
                     } label: {
                         BookCoverCard(book: book)
+                            .matchedTransitionSource(id: book.id, in: namespace)
                     }
                     .tag(index)
                 }
@@ -71,7 +75,7 @@ private extension PageView {
     )
 
     PageView(books: [
-        .init(id: "id", volumeInfo: volume),
-        .init(id: "aa", volumeInfo: volume)
+        .init(book: .init(id: "id", volumeInfo: volume)),
+        .init(book: .init(id: "id2", volumeInfo: volume))
     ], selectedPage: .constant(0))
 }
