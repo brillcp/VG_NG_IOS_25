@@ -24,6 +24,7 @@ struct BookDescriptionSection: View {
                 .padding(.vertical)
         }
         .padding(.horizontal)
+        .background(.white)
     }
 }
 

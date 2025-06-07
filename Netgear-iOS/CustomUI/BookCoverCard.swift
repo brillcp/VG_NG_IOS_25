@@ -18,6 +18,7 @@ struct BookCoverCard: View {
 
             Text(book.volumeInfo.title)
                 .font(.title2.bold())
+                .multilineTextAlignment(.center)
         }
         .padding(32.0)
         .foregroundStyle(.black)

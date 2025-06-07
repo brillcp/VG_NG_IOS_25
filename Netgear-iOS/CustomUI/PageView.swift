@@ -41,7 +41,7 @@ struct PageView: View {
 private extension PageView {
     var pageControl: some View {
         HStack(spacing: 8) {
-            ForEach(0..<books.count, id: \.self) { index in
+            ForEach(0 ..< books.count, id: \.self) { index in
                 Circle()
                     .fill(index == selectedPage ? Color.primary : Color.secondary.opacity(0.4))
                     .frame(width: 8, height: 8)
