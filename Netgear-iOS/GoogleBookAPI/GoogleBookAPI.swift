@@ -20,7 +20,7 @@ extension GoogleBookAPI: Requestable {
     var endpoint: EndpointType {
         switch self {
         case .search:
-            APIEndpoint.search
+            APIEndpoint.volumes
         }
     }
 

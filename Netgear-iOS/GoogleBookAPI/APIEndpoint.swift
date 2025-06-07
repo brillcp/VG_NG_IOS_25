@@ -8,14 +8,14 @@
 import Networking
 
 enum APIEndpoint {
-    case search
+    case volumes
 }
 
 // MARK: - EndpointType
 extension APIEndpoint: EndpointType {
     var path: String {
         switch self {
-        case .search:
+        case .volumes:
             "volumes"
         }
     }
