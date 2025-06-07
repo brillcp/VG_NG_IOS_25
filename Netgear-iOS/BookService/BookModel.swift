@@ -1,5 +1,5 @@
 //
-//  Book.swift
+//  BookModel.swift
 //  Netgear-iOS
 //
 //  Created by Viktor Gidlöf on 2025-06-07.
