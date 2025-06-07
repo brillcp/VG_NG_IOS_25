@@ -27,7 +27,7 @@ extension BookService: BookServieProtocol {
     @MainActor
     func searchBooks(query: String) async throws -> [Book] {
         let request = GoogleBookAPI.search(query: query)
-        let response: BookResponse = try await service.request(request, logResponse: true)
+        let response: BookResponse = try await service.request(request)
         return response.items
     }
 }
