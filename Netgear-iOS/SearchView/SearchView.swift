@@ -24,49 +24,18 @@ struct SearchView<ViewModel: SearchViewModelProtocol>: View {
                 Divider()
 
                 if viewModel.isLoading {
-                    VStack {
-                        ProgressView()
-                        Text("Looking for books…")
-                    }
-                    .foregroundStyle(.secondary)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    LoadingView()
                 } else if viewModel.books.isEmpty {
-                    VStack(spacing: 16) {
-                        Image(systemName: "book.circle")
-                            .font(.system(size: 64))
-                            .fontWeight(.thin)
-                        Text("Find books and authors")
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .foregroundColor(.secondary)
+                    IdleView()
                 } else {
                     switch displayMode {
                     case .list:
-                        List {
-                            ForEach(viewModel.books) { book in
-                                NavigationLink {
-                                    Text(book.volumeInfo.description ?? "")
-                                        .padding()
-                                } label: {
-                                    SearchResultRow(book: book)
-                                }
-                            }
-                        }
-                        .listStyle(.plain)
+                        ListView(books: viewModel.books)
                     case .page:
-                        TabView(selection: $selectedPage) {
-                            ForEach(Array(viewModel.books.enumerated()), id: \.element.id) { index, book in
-                                NavigationLink {
-                                    Text(book.volumeInfo.description ?? "")
-                                        .padding()
-                                } label: {
-                                    Text(book.volumeInfo.description ?? "")
-                                }
-                                .tag(index)
-                            }
-                        }
-                        .tabViewStyle(.page(indexDisplayMode: .always))
-                        .indexViewStyle(.page(backgroundDisplayMode: .automatic))
+                        PageView(
+                            books: viewModel.books,
+                            selectedPage: $selectedPage
+                        )
                     }
                 }
             }
