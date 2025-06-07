@@ -16,16 +16,14 @@ struct SearchResultRow: View {
 
     var body: some View {
         HStack {
-            if let smallThumbnail {
-                AsyncImage(url: smallThumbnail) { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                } placeholder: {
-                    ProgressView()
-                }
-                .frame(width: 64.0, height: 64.0)
+            AsyncImage(url: smallThumbnail) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            } placeholder: {
+                ProgressView()
             }
+            .frame(width: 64.0, height: 64.0)
 
             VStack(alignment: .leading) {
                 Text(book.volumeInfo.title)
