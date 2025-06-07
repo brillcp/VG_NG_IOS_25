@@ -58,21 +58,17 @@ struct SearchView<ViewModel: SearchViewModelProtocol>: View {
 private extension SearchView {
     var displayToggle: some View {
         HStack(spacing: 16) {
-            Button {
-                displayMode = .page
-            } label: {
-                Image(systemName: "rectangle.portrait.on.rectangle.portrait.angled")
-                    .foregroundStyle(displayMode == .page ? .primary : .secondary)
-                    .font(displayMode == .page ? .headline : .body)
-            }
-            Button {
-                displayMode = .list
-            } label: {
-                Image(systemName: "list.bullet")
-                    .foregroundStyle(displayMode == .list ? .primary : .secondary)
-                    .font(displayMode == .list ? .headline : .body)
-            }
             Spacer()
+            Button {
+                switch displayMode {
+                case .list:
+                    displayMode = .page
+                case .page:
+                    displayMode = .list
+                }
+            } label: {
+                Image(systemName: displayMode == .list ?  "rectangle.portrait.on.rectangle.portrait.angled" : "list.bullet")
+            }
         }
         .padding(.horizontal)
         .padding(.vertical, 8)

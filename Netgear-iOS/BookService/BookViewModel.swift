@@ -8,6 +8,12 @@
 import Foundation
 
 final class BookViewModel: ObservableObject {
+    private lazy var numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        return formatter
+    }()
+
     private let session: URLSession
     private let book: Book
 
@@ -23,6 +29,14 @@ final class BookViewModel: ObservableObject {
 extension BookViewModel: Identifiable {
     var id: String { book.id }
     var volumeInfo: VolumeInfo { book.volumeInfo }
+
+    var priceString: String? {
+        guard let saleInfo = volumeInfo.saleInfo,
+              let amount = saleInfo.retailPrice?.amount,
+              let price = numberFormatter.string(from: .init(value: amount))
+        else { return nil }
+        return "\(price)"
+    }
 }
 
 // MARK: - Public functions

@@ -27,11 +27,15 @@ struct SearchResultRow: View {
                     .foregroundStyle(.secondary)
                 
             }
-            .font(.caption)
+            .font(.footnote)
             Spacer()
-            
-            if let amount = volumeInfo.saleInfo?.retailPrice?.amount, let currency = volumeInfo.saleInfo?.retailPrice?.currencyCode {
-                Text("\(amount) \(currency)")
+
+            if let priceString = book.priceString {
+                Text("\(priceString)")
+                    .font(.footnote)
+                    .padding(6.0)
+                    .background(.ultraThinMaterial)
+                    .clipShape(RoundedRectangle.bookCornerRadius)
             }
         }
     }
