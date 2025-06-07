@@ -20,11 +20,11 @@ struct Book: Codable, Identifiable {
 
 struct VolumeInfo: Codable {
     let title: String
-    let subtitle: String
-    let authors: [String]
-    let publisher: String
-    let publishedDate: String
-    let description: String
+    let subtitle: String?
+    let authors: [String]?
+    let publisher: String?
+    let publishedDate: String?
+    let description: String?
     let industryIdentifiers: [IndustryIdentifier]?
     let readingModes: ReadingModes?
     let pageCount: Int?

@@ -28,7 +28,7 @@ struct SearchResultRow: View {
             VStack(alignment: .leading) {
                 Text(book.volumeInfo.title)
                     .bold()
-                Text(book.volumeInfo.authors.first ?? "")
+                Text(book.volumeInfo.authors?.first ?? "")
                 Text(book.volumeInfo.categories?.first ?? "")
                     .foregroundStyle(.secondary)
             }
