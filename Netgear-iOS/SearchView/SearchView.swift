@@ -30,7 +30,11 @@ struct SearchView<ViewModel: SearchViewModelProtocol>: View {
                     .foregroundColor(.secondary)
                 } else {
                     List(viewModel.books) { book in
-                        SearchResultRow(book: book)
+                        NavigationLink {
+                            Text(book.volumeInfo.description ?? "")
+                        } label: {
+                            SearchResultRow(book: book)
+                        }
                     }
                     .listStyle(.plain)
                 }
