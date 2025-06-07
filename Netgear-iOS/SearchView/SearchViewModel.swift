@@ -8,8 +8,8 @@
 import Foundation
 
 protocol SearchViewModelProtocol: ObservableObject {
-    var books: [Book] { get set }
-    var isLoading: Bool { get set }
+    var books: [Book] { get }
+    var isLoading: Bool { get }
     var query: String { get set }
     
     func search() async

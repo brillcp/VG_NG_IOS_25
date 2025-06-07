@@ -16,7 +16,7 @@ enum GoogleBookAPI {
 extension GoogleBookAPI: Requestable {
     var encoding: Request.Encoding { .query }
     var httpMethod: HTTP.Method { .get }
-    
+
     var endpoint: EndpointType {
         switch self {
         case .search:
