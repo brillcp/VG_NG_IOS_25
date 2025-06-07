@@ -195,6 +195,9 @@
 			);
 			mainGroup = D5ECD6EA2DF4346400D99EF1;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D5ECD7352DF4366500D99EF1 /* XCRemoteSwiftPackageReference "Networking" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D5ECD6F42DF4346400D99EF1 /* Products */;
 			projectDirPath = "";
@@ -558,6 +561,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D5ECD7352DF4366500D99EF1 /* XCRemoteSwiftPackageReference "Networking" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/brillcp/Networking";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = D5ECD6EB2DF4346400D99EF1 /* Project object */;
 }

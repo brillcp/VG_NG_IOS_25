@@ -1,0 +1,15 @@
+{
+  "originHash" : "2e883a57b9857b2056fcb77c4fa6f4490a359d292fb138ae72c9710140d2ad42",
+  "pins" : [
+    {
+      "identity" : "networking",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/brillcp/Networking",
+      "state" : {
+        "revision" : "2d8ffc3380c78560bdf3bc71ce65adab2ee354b7",
+        "version" : "0.9.1"
+      }
+    }
+  ],
+  "version" : 3
+}
