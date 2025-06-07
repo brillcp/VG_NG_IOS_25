@@ -9,26 +9,22 @@ import SwiftUI
 
 struct BookMetadataSection: View {
     let book: BookViewModel
-    
-    var volumeInfo: VolumeInfo {
-        book.volumeInfo
-    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             if let type = volumeInfo.printType {
-                Text(type)
+                Text(type.capitalized)
             }
 
-            HStack {
+            HStack(spacing: 16.0) {
                 if let language = volumeInfo.language {
-                    Text("\(language)")
+                    Label("\(language)", systemImage: "character.book.closed.fill")
                 }
                 if let date = volumeInfo.publishedDate {
-                    Text("· \(date)")
+                    Label("\(date)", systemImage: "calendar")
                 }
                 if let pageCount = volumeInfo.pageCount {
-                    Text("· \(pageCount) pages")
+                    Label("\(pageCount)", systemImage: "book.pages.fill")
                 }
             }
         }
@@ -38,7 +34,13 @@ struct BookMetadataSection: View {
             RoundedRectangle(cornerRadius: 16.0)
                 .fill((book.color.isDark ? Color.white : Color.black).opacity(0.2))
         )
-        .padding(.horizontal)
+    }
+}
+
+// MARK: -
+private extension BookMetadataSection {
+    var volumeInfo: VolumeInfo {
+        book.volumeInfo
     }
 }
 

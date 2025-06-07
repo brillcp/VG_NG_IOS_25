@@ -8,19 +8,41 @@
 import SwiftUI
 
 struct BookDetailView: View {
-    private var volumeInfo: VolumeInfo {
-        book.volumeInfo
-    }
-
     let book: BookViewModel
 
     var body: some View {
         ScrollView(showsIndicators: false) {
             BookCoverSection(book: book)
-            BookDescriptionSection(volumeInfo: volumeInfo)
-            Divider()
-                .padding(.horizontal)
+
+            if let description = volumeInfo.description {
+                BookDescriptionSection(
+                    title: "Description",
+                    subtitle: description
+                )
+                .padding(.top)
+            }
+
+            if let snippet = volumeInfo.searchInfo?.textSnippet {
+                BookDescriptionSection(
+                    title: "Snippet",
+                    subtitle: snippet
+                )
+            }
+
+            if let publisher = volumeInfo.publisher {
+                BookDescriptionSection(
+                    title: "Publisher",
+                    subtitle: publisher
+                )
+            }
         }
+    }
+}
+
+// MARK: -
+private extension BookDetailView {
+    var volumeInfo: VolumeInfo {
+        book.volumeInfo
     }
 }
 

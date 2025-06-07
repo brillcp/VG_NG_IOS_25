@@ -8,23 +8,25 @@
 import SwiftUI
 
 struct BookDescriptionSection: View {
-    let volumeInfo: VolumeInfo
+    let title: String
+    let subtitle: String
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            if let description = volumeInfo.description {
-                Text("Description")
-                    .font(.footnote.bold())
+            Text(title)
+                .bold()
 
-                Text(description)
-                    .font(.caption.italic())
-                    .multilineTextAlignment(.leading)
-            }
+            Text(subtitle)
+                .font(.caption.italic())
+                .multilineTextAlignment(.leading)
+
+            Divider()
+                .padding(.vertical)
         }
         .padding(.horizontal)
-        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
+
 #Preview {
-    BookDescriptionSection(volumeInfo: .common)
+    BookDescriptionSection(title: "Descirption", subtitle: "Lorem ipsum")
 }

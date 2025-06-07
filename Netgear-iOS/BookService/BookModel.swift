@@ -40,6 +40,7 @@ struct VolumeInfo: Codable {
     let infoLink: String?
     let canonicalVolumeLink: String?
     let saleInfo: SaleInfo?
+    let searchInfo: SearchInfo?
 }
 
 extension VolumeInfo {
@@ -94,6 +95,10 @@ struct Offer: Codable {
     let retailPrice: Price
 }
 
+struct SearchInfo: Codable {
+    let textSnippet: String
+}
+
 extension VolumeInfo {
     static var common: VolumeInfo {
         .init(
@@ -128,7 +133,8 @@ extension VolumeInfo {
                 retailPrice: .init(amount: 149.99, amountInMicros: 0, currencyCode: "SEK"),
                 buyLink: nil,
                 offers: nil
-            )
+            ),
+            searchInfo: .init(textSnippet: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
         )
     }
 }

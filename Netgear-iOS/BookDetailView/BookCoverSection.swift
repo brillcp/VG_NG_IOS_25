@@ -9,17 +9,12 @@ import SwiftUI
 
 struct BookCoverSection: View {
     let book: BookViewModel
-    
-    private var volumeInfo: VolumeInfo {
-        book.volumeInfo
-    }
 
     var body: some View {
         VStack(spacing: 16) {
             AsyncBookImage(book: book)
                 .frame(width: 160, height: 240)
                 .clipShape(RoundedRectangle.bookCornerRadius)
-                .padding(.top)
 
             VStack(spacing: 8) {
                 Text(volumeInfo.title)
@@ -41,11 +36,18 @@ struct BookCoverSection: View {
                 BookMetadataSection(book: book)
                     .padding(.top)
             }
-            .multilineTextAlignment(.center)
             .foregroundStyle(book.color.isDark ? .white : .black)
-            .padding()
+            .multilineTextAlignment(.center)
         }
+        .padding()
         .background(book.color)
+    }
+}
+
+// MARK: -
+private extension BookCoverSection {
+    var volumeInfo: VolumeInfo {
+        book.volumeInfo
     }
 }
 
