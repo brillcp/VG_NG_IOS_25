@@ -26,6 +26,7 @@ final class SearchViewModel {
 
 // MARK: - SearchViewModelProtocol
 extension SearchViewModel: SearchViewModelProtocol {
+    @MainActor
     func search() async {
         guard !query.trimmingCharacters(in: .whitespaces).isEmpty else { return }
 

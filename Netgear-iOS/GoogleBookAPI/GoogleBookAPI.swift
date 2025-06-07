@@ -19,8 +19,15 @@ extension GoogleBookAPI: Requestable {
     
     var endpoint: EndpointType {
         switch self {
+        case .search:
+            APIEndpoint.search
+        }
+    }
+
+    var parameters: HTTP.Parameters {
+        switch self {
         case .search(let q):
-            APIEndpoint.search(query: q)
+            ["q": q]
         }
     }
 }

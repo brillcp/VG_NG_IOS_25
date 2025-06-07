@@ -9,6 +9,6 @@ import Foundation
 
 extension URL {
     static var googleBookAPI: URL {
-        URL(string: "https://api.netgear.com/")!
+        URL(string: "https://www.googleapis.com/books/v1/")!
     }
 }
