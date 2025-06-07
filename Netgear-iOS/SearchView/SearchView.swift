@@ -12,20 +12,31 @@ struct SearchView<ViewModel: SearchViewModelProtocol>: View {
 
     var body: some View {
         NavigationView {
-            List {
+            Group {
                 if viewModel.isLoading {
-                    ProgressView()
-                        .frame(maxWidth: .infinity, alignment: .center)
-                } else {
-                    ForEach(viewModel.books) { book in
-                        VStack(alignment: .leading, spacing: 4) {
-                        }
-                        .padding(.vertical, 4)
+                    VStack {
+                        ProgressView()
+                        Text("Lookng for books…")
                     }
+                    .foregroundStyle(.secondary)
+                } else if viewModel.books.isEmpty {
+                    VStack(spacing: 16) {
+                        Image(systemName: "book.circle")
+                            .font(.system(size: 64))
+                            .fontWeight(.thin)
+                        Text("Find books and authors")
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .foregroundColor(.secondary)
+                } else {
+                    List(viewModel.books) { book in
+                        SearchResultRow(book: book)
+                    }
+                    .listStyle(.plain)
                 }
             }
-            .navigationTitle("Search Books")
-            .searchable(text: $viewModel.query, placement: .navigationBarDrawer(displayMode: .always))
+            .navigationTitle("Search")
+            .searchable(text: $viewModel.query, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("Harry Potter, Stephen King…"))
             .onSubmit(of: .search) {
                 Task { await viewModel.search() }
             }
