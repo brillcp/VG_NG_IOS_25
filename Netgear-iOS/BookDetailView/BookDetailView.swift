@@ -13,7 +13,7 @@ struct BookDetailView: View {
     var body: some View {
         ZStack(alignment: .top) {
             book.color
-                .frame(height: 280.0)
+                .frame(height: 180.0)
 
             ScrollView(showsIndicators: false) {
                 BookCoverSection(book: book)
