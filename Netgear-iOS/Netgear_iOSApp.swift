@@ -11,7 +11,7 @@ import SwiftUI
 struct Netgear_iOSApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SearchView()
         }
     }
 }
