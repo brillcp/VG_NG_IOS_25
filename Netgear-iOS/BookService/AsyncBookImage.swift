@@ -25,37 +25,10 @@ struct AsyncBookImage: View {
             }
         }
         .clipShape(RoundedRectangle.bookCornerRadius)
-        .onAppear {
-            Task {
-                await book.loadThumbnail()
-            }
-        }
+        .task(book.loadThumbnail)
     }
 }
 
 #Preview {
-    let volume = VolumeInfo(
-        title: "title",
-        subtitle: "subtitle",
-        authors: ["author"],
-        publisher: "publisher",
-        publishedDate: "",
-        description: "description",
-        industryIdentifiers: nil,
-        readingModes: nil,
-        pageCount: nil,
-        printType: nil,
-        categories: ["comedy"],
-        maturityRating: nil,
-        allowAnonLogging: nil,
-        contentVersion: nil,
-        panelizationSummary: nil,
-        imageLinks: .init(smallThumbnail: "http://books.google.com/books/content?id=3ikDEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api", thumbnail: "http://books.google.com/books/content?id=3ikDEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"),
-        language: nil,
-        previewLink: nil,
-        infoLink: nil,
-        canonicalVolumeLink: nil
-    )
-
-    AsyncBookImage(book: .init(book: .init(id: "id", volumeInfo: volume)))
+    AsyncBookImage(book: .init(book: .init(id: "id", volumeInfo: .common)))
 }

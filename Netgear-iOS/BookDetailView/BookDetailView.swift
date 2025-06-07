@@ -21,45 +21,39 @@ struct BookDetailView: View {
                     Text(book.volumeInfo.title)
                         .font(.title2.bold())
                     Text(book.volumeInfo.authors?.first ?? "")
+                    Text(book.volumeInfo.subtitle ?? "")
+                        .font(.caption.italic())
+                        .multilineTextAlignment(.leading)
                 }
             }
-            
             VStack(alignment: .leading) {
-                Text("Description")
-                    .font(.callout.bold())
+                Text("Book")
+                Text("\(book.volumeInfo.language ?? "das") · \(book.volumeInfo.publishedDate ?? "22")")
+                Spacer()
+            }
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(
+                RoundedRectangle(cornerRadius: 16.0)
+                    .fill(.red)
+            )
+            .padding()
+
+            VStack(alignment: .leading) {
+                Text("From the publisher")
+                    .font(.footnote.bold())
                 Text(book.volumeInfo.description ?? "")
-                    .font(.caption)
+                    .font(.caption.italic())
                     .multilineTextAlignment(.leading)
             }
             .padding(.top, 32.0)
+
+            Divider()
         }
         .padding(.horizontal)
     }
 }
 
 #Preview {
-    let volume = VolumeInfo(
-        title: "title",
-        subtitle: "subtitle",
-        authors: ["author"],
-        publisher: "publisher",
-        publishedDate: "",
-        description: "descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription",
-        industryIdentifiers: nil,
-        readingModes: nil,
-        pageCount: nil,
-        printType: nil,
-        categories: ["comedy"],
-        maturityRating: nil,
-        allowAnonLogging: nil,
-        contentVersion: nil,
-        panelizationSummary: nil,
-        imageLinks: .init(smallThumbnail: "http://books.google.com/books/content?id=3ikDEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api", thumbnail: "http://books.google.com/books/content?id=3ikDEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"),
-        language: nil,
-        previewLink: nil,
-        infoLink: nil,
-        canonicalVolumeLink: nil
-    )
-
-    BookDetailView(book: .init(book: .init(id: "id", volumeInfo: volume)))
+    BookDetailView(book: .init(book: .init(id: "id", volumeInfo: .common)))
 }

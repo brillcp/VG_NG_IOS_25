@@ -39,6 +39,7 @@ struct VolumeInfo: Codable {
     let previewLink: String?
     let infoLink: String?
     let canonicalVolumeLink: String?
+    let saleInfo: SaleInfo?
 }
 
 extension VolumeInfo {
@@ -69,4 +70,65 @@ struct PanelizationSummary: Codable {
 struct ImageLinks: Codable {
     let smallThumbnail: String?
     let thumbnail: String?
+}
+
+struct SaleInfo: Codable {
+    let country: String
+    let saleability: String
+    let isEbook: Bool
+    let listPrice: Price?
+    let retailPrice: Price?
+    let buyLink: URL?
+    let offers: [Offer]?
+}
+
+struct Price: Codable {
+    let amount: Double?
+    let amountInMicros: Int64?
+    let currencyCode: String
+}
+
+struct Offer: Codable {
+    let finskyOfferType: Int
+    let listPrice: Price
+    let retailPrice: Price
+}
+
+extension VolumeInfo {
+    static var common: VolumeInfo {
+        .init(
+            title: "title",
+            subtitle: "subtitle",
+            authors: ["author"],
+            publisher: "publisher",
+            publishedDate: "",
+            description: "description",
+            industryIdentifiers: nil,
+            readingModes: nil,
+            pageCount: nil,
+            printType: nil,
+            categories: ["comedy"],
+            maturityRating: nil,
+            allowAnonLogging: nil,
+            contentVersion: nil,
+            panelizationSummary: nil,
+            imageLinks: .init(
+                smallThumbnail: "http://books.google.com/books/content?id=3ikDEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+                thumbnail: "http://books.google.com/books/content?id=3ikDEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+            ),
+            language: nil,
+            previewLink: nil,
+            infoLink: nil,
+            canonicalVolumeLink: nil,
+            saleInfo: .init(
+                country: "SE",
+                saleability: "",
+                isEbook: false,
+                listPrice: nil,
+                retailPrice: .init(amount: 149.99, amountInMicros: 0, currencyCode: "SEK"),
+                buyLink: nil,
+                offers: nil
+            )
+        )
+    }
 }
