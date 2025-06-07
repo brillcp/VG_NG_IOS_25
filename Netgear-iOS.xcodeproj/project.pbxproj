@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		D5ECD7012DF4346600D99EF1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5ECD6EB2DF4346400D99EF1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5ECD6F22DF4346400D99EF1;
+			remoteInfo = "Netgear-iOS";
+		};
+		D5ECD70B2DF4346600D99EF1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5ECD6EB2DF4346400D99EF1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5ECD6F22DF4346400D99EF1;
+			remoteInfo = "Netgear-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D5ECD6F32DF4346400D99EF1 /* Netgear-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Netgear-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5ECD7002DF4346600D99EF1 /* Netgear-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Netgear-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5ECD70A2DF4346600D99EF1 /* Netgear-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Netgear-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		D5ECD6F52DF4346400D99EF1 /* Netgear-iOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Netgear-iOS";
+			sourceTree = "<group>";
+		};
+		D5ECD7032DF4346600D99EF1 /* Netgear-iOSTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Netgear-iOSTests";
+			sourceTree = "<group>";
+		};
+		D5ECD70D2DF4346600D99EF1 /* Netgear-iOSUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Netgear-iOSUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D5ECD6F02DF4346400D99EF1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5ECD6FD2DF4346600D99EF1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5ECD7072DF4346600D99EF1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D5ECD6EA2DF4346400D99EF1 = {
+			isa = PBXGroup;
+			children = (
+				D5ECD6F52DF4346400D99EF1 /* Netgear-iOS */,
+				D5ECD7032DF4346600D99EF1 /* Netgear-iOSTests */,
+				D5ECD70D2DF4346600D99EF1 /* Netgear-iOSUITests */,
+				D5ECD6F42DF4346400D99EF1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D5ECD6F42DF4346400D99EF1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D5ECD6F32DF4346400D99EF1 /* Netgear-iOS.app */,
+				D5ECD7002DF4346600D99EF1 /* Netgear-iOSTests.xctest */,
+				D5ECD70A2DF4346600D99EF1 /* Netgear-iOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D5ECD6F22DF4346400D99EF1 /* Netgear-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5ECD7142DF4346600D99EF1 /* Build configuration list for PBXNativeTarget "Netgear-iOS" */;
+			buildPhases = (
+				D5ECD6EF2DF4346400D99EF1 /* Sources */,
+				D5ECD6F02DF4346400D99EF1 /* Frameworks */,
+				D5ECD6F12DF4346400D99EF1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D5ECD6F52DF4346400D99EF1 /* Netgear-iOS */,
+			);
+			name = "Netgear-iOS";
+			packageProductDependencies = (
+			);
+			productName = "Netgear-iOS";
+			productReference = D5ECD6F32DF4346400D99EF1 /* Netgear-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D5ECD6FF2DF4346600D99EF1 /* Netgear-iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5ECD7172DF4346600D99EF1 /* Build configuration list for PBXNativeTarget "Netgear-iOSTests" */;
+			buildPhases = (
+				D5ECD6FC2DF4346600D99EF1 /* Sources */,
+				D5ECD6FD2DF4346600D99EF1 /* Frameworks */,
+				D5ECD6FE2DF4346600D99EF1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5ECD7022DF4346600D99EF1 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D5ECD7032DF4346600D99EF1 /* Netgear-iOSTests */,
+			);
+			name = "Netgear-iOSTests";
+			packageProductDependencies = (
+			);
+			productName = "Netgear-iOSTests";
+			productReference = D5ECD7002DF4346600D99EF1 /* Netgear-iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D5ECD7092DF4346600D99EF1 /* Netgear-iOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5ECD71A2DF4346600D99EF1 /* Build configuration list for PBXNativeTarget "Netgear-iOSUITests" */;
+			buildPhases = (
+				D5ECD7062DF4346600D99EF1 /* Sources */,
+				D5ECD7072DF4346600D99EF1 /* Frameworks */,
+				D5ECD7082DF4346600D99EF1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5ECD70C2DF4346600D99EF1 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D5ECD70D2DF4346600D99EF1 /* Netgear-iOSUITests */,
+			);
+			name = "Netgear-iOSUITests";
+			packageProductDependencies = (
+			);
+			productName = "Netgear-iOSUITests";
+			productReference = D5ECD70A2DF4346600D99EF1 /* Netgear-iOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D5ECD6EB2DF4346400D99EF1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1630;
+				LastUpgradeCheck = 1630;
+				TargetAttributes = {
+					D5ECD6F22DF4346400D99EF1 = {
+						CreatedOnToolsVersion = 16.3;
+					};
+					D5ECD6FF2DF4346600D99EF1 = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = D5ECD6F22DF4346400D99EF1;
+					};
+					D5ECD7092DF4346600D99EF1 = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = D5ECD6F22DF4346400D99EF1;
+					};
+				};
+			};
+			buildConfigurationList = D5ECD6EE2DF4346400D99EF1 /* Build configuration list for PBXProject "Netgear-iOS" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D5ECD6EA2DF4346400D99EF1;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = D5ECD6F42DF4346400D99EF1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D5ECD6F22DF4346400D99EF1 /* Netgear-iOS */,
+				D5ECD6FF2DF4346600D99EF1 /* Netgear-iOSTests */,
+				D5ECD7092DF4346600D99EF1 /* Netgear-iOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D5ECD6F12DF4346400D99EF1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5ECD6FE2DF4346600D99EF1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5ECD7082DF4346600D99EF1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D5ECD6EF2DF4346400D99EF1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5ECD6FC2DF4346600D99EF1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5ECD7062DF4346600D99EF1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D5ECD7022DF4346600D99EF1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5ECD6F22DF4346400D99EF1 /* Netgear-iOS */;
+			targetProxy = D5ECD7012DF4346600D99EF1 /* PBXContainerItemProxy */;
+		};
+		D5ECD70C2DF4346600D99EF1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5ECD6F22DF4346400D99EF1 /* Netgear-iOS */;
+			targetProxy = D5ECD70B2DF4346600D99EF1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		D5ECD7122DF4346600D99EF1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = V39999UVRP;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D5ECD7132DF4346600D99EF1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = V39999UVRP;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D5ECD7152DF4346600D99EF1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V39999UVRP;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.viktorgidlof.Netgear-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D5ECD7162DF4346600D99EF1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V39999UVRP;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.viktorgidlof.Netgear-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D5ECD7182DF4346600D99EF1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V39999UVRP;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.viktorgidlof.Netgear-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Netgear-iOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Netgear-iOS";
+			};
+			name = Debug;
+		};
+		D5ECD7192DF4346600D99EF1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V39999UVRP;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.viktorgidlof.Netgear-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Netgear-iOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Netgear-iOS";
+			};
+			name = Release;
+		};
+		D5ECD71B2DF4346600D99EF1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V39999UVRP;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.viktorgidlof.Netgear-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Netgear-iOS";
+			};
+			name = Debug;
+		};
+		D5ECD71C2DF4346600D99EF1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V39999UVRP;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.viktorgidlof.Netgear-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Netgear-iOS";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D5ECD6EE2DF4346400D99EF1 /* Build configuration list for PBXProject "Netgear-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5ECD7122DF4346600D99EF1 /* Debug */,
+				D5ECD7132DF4346600D99EF1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5ECD7142DF4346600D99EF1 /* Build configuration list for PBXNativeTarget "Netgear-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5ECD7152DF4346600D99EF1 /* Debug */,
+				D5ECD7162DF4346600D99EF1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5ECD7172DF4346600D99EF1 /* Build configuration list for PBXNativeTarget "Netgear-iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5ECD7182DF4346600D99EF1 /* Debug */,
+				D5ECD7192DF4346600D99EF1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5ECD71A2DF4346600D99EF1 /* Build configuration list for PBXNativeTarget "Netgear-iOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5ECD71B2DF4346600D99EF1 /* Debug */,
+				D5ECD71C2DF4346600D99EF1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D5ECD6EB2DF4346400D99EF1 /* Project object */;
+}
