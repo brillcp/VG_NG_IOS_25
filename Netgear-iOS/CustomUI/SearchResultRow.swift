@@ -28,7 +28,7 @@ struct SearchResultRow: View {
             VStack(alignment: .leading) {
                 Text(book.volumeInfo.title)
                     .bold()
-                Text(book.volumeInfo.authors?.first ?? "")
+                Text(book.volumeInfo.authors.first ?? "")
                 Text(book.volumeInfo.categories?.first ?? "")
                     .foregroundStyle(.secondary)
             }
@@ -41,10 +41,11 @@ struct SearchResultRow: View {
 #Preview {
     let volume = VolumeInfo(
         title: "title",
+        subtitle: "subtitle",
         authors: ["author"],
-        publisher: nil,
-        publishedDate: nil,
-        description: nil,
+        publisher: "publisher",
+        publishedDate: "",
+        description: "description",
         industryIdentifiers: nil,
         readingModes: nil,
         pageCount: nil,

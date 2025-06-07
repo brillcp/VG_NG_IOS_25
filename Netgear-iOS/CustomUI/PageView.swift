@@ -49,10 +49,11 @@ private extension PageView {
 #Preview {
     let volume = VolumeInfo(
         title: "title",
+        subtitle: "subtitle",
         authors: ["author"],
-        publisher: nil,
-        publishedDate: nil,
-        description: nil,
+        publisher: "publisher",
+        publishedDate: "",
+        description: "description",
         industryIdentifiers: nil,
         readingModes: nil,
         pageCount: nil,
