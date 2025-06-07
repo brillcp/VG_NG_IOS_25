@@ -22,7 +22,7 @@ struct BookDetailView: View {
                 .padding(.top)
             }
 
-            if let snippet = volumeInfo.searchInfo?.textSnippet {
+            if let snippet = book.searchInfo?.textSnippet {
                 BookDescriptionSection(
                     title: "Snippet",
                     subtitle: snippet
@@ -47,5 +47,5 @@ private extension BookDetailView {
 }
 
 #Preview {
-    BookDetailView(book: .init(book: .init(id: "id", volumeInfo: .common)))
+    BookDetailView(book: .init(book: .common))
 }

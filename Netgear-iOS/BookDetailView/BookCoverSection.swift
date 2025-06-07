@@ -52,5 +52,5 @@ private extension BookCoverSection {
 }
 
 #Preview {
-    BookCoverSection(book: .init(book: .init(id: "id", volumeInfo: .common)))
+    BookCoverSection(book: .init(book: .common))
 }

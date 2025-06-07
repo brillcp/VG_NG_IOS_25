@@ -13,10 +13,6 @@ struct BookMetadataSection: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 16.0) {
-                if let type = volumeInfo.printType {
-                    Text(type.capitalized)
-                }
-
                 HStack(spacing: 16.0) {
                     if let language = volumeInfo.language {
                         Label("\(language)", systemImage: "character.book.closed.fill")
@@ -32,13 +28,13 @@ struct BookMetadataSection: View {
                 HStack {
                     navLink(
                         title: "Preview",
-                        url: volumeInfo.accessInfo?.webReaderLink
+                        url: book.accessInfo?.webReaderLink
                     )
                     .buttonStyle(.bordered)
 
                     navLink(
                         title: "Buy \(book.priceString ?? "")",
-                        url: volumeInfo.saleInfo?.buyLink
+                        url: book.saleInfo?.buyLink
                     )
                     .buttonStyle(.borderedProminent)
                 }
@@ -73,10 +69,10 @@ private extension BookMetadataSection {
             }
         }
         .frame(maxWidth: .infinity)
-        .disabled(url != nil)
+        .disabled(url == nil)
     }
 }
 
 #Preview {
-    BookMetadataSection(book: .init(book: .init(id: "id", volumeInfo: .common)))
+    BookMetadataSection(book: .init(book: .common))
 }

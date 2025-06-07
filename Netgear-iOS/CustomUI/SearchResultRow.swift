@@ -42,5 +42,5 @@ struct SearchResultRow: View {
 }
 
 #Preview {
-    SearchResultRow(book: .init(book: .init(id: "id", volumeInfo: .common)))
+    SearchResultRow(book: .init(book: .common))
 }

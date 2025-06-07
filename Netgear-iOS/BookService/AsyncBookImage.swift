@@ -30,5 +30,5 @@ struct AsyncBookImage: View {
 }
 
 #Preview {
-    AsyncBookImage(book: .init(book: .init(id: "id", volumeInfo: .common)))
+    AsyncBookImage(book: .init(book: .common))
 }

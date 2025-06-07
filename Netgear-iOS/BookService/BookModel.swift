@@ -16,6 +16,9 @@ struct BookResponse: Codable {
 struct Book: Codable, Identifiable {
     let id: String
     let volumeInfo: VolumeInfo
+    let saleInfo: SaleInfo?
+    let searchInfo: SearchInfo?
+    let accessInfo: AccessInfo?
 }
 
 struct VolumeInfo: Codable {
@@ -39,9 +42,6 @@ struct VolumeInfo: Codable {
     let previewLink: String?
     let infoLink: String?
     let canonicalVolumeLink: String?
-    let saleInfo: SaleInfo?
-    let searchInfo: SearchInfo?
-    let accessInfo: AccessInfo?
 }
 
 struct IndustryIdentifier: Codable {
@@ -129,7 +129,16 @@ extension VolumeInfo {
             language: "eng",
             previewLink: nil,
             infoLink: nil,
-            canonicalVolumeLink: nil,
+            canonicalVolumeLink: nil
+        )
+    }
+}
+
+extension Book {
+    static var common: Book {
+        .init(
+            id: "",
+            volumeInfo: .common,
             saleInfo: .init(
                 country: "SE",
                 saleability: "",
@@ -139,7 +148,9 @@ extension VolumeInfo {
                 buyLink: "https://google.com",
                 offers: nil
             ),
-            searchInfo: .init(textSnippet: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+            searchInfo: .init(
+                textSnippet: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            ),
             accessInfo: .init(
                 country: "SE",
                 textToSpeechPermission: "ALLOWED",

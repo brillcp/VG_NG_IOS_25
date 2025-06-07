@@ -30,13 +30,17 @@ final class BookViewModel: ObservableObject {
 extension BookViewModel: Identifiable {
     var id: String { book.id }
     var volumeInfo: VolumeInfo { book.volumeInfo }
+    var saleInfo: SaleInfo? { book.saleInfo }
+    var searchInfo: SearchInfo? { book.searchInfo }
+    var accessInfo: AccessInfo? { book.accessInfo }
+
     var color: Color {
         guard let imageData, let color = UIImage(data: imageData)?.averageColor() else { return .black }
         return color
     }
 
     var priceString: String? {
-        guard let saleInfo = volumeInfo.saleInfo,
+        guard let saleInfo = saleInfo,
               let amount = saleInfo.retailPrice?.amount,
               let price = numberFormatter.string(from: .init(value: amount))
         else { return nil }

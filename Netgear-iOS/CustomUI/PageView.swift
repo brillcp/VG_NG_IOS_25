@@ -52,7 +52,7 @@ private extension PageView {
 
 #Preview {
     PageView(books: [
-        .init(book: .init(id: "id", volumeInfo: .common)),
-        .init(book: .init(id: "id2", volumeInfo: .common))
+        .init(book: .common),
+        .init(book: .common)
     ], selectedPage: .constant(0))
 }

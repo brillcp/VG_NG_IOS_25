@@ -25,5 +25,5 @@ struct BookCoverCard: View {
 }
 
 #Preview {
-    BookCoverCard(book: .init(book: .init(id: "id", volumeInfo: .common)))
+    BookCoverCard(book: .init(book: .common))
 }

@@ -30,6 +30,6 @@ struct ListView: View {
 
 #Preview {
     ListView(books: [
-        .init(book: .init(id: "id", volumeInfo: .common))
+        .init(book: .common)
     ])
 }
