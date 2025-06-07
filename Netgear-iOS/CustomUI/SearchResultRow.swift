@@ -19,7 +19,7 @@ struct SearchResultRow: View {
             AsyncImage(url: smallThumbnail) { image in
                 image
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .aspectRatio(contentMode: .fill)
             } placeholder: {
                 ProgressView()
             }

@@ -19,13 +19,13 @@ struct BookCoverCard: View {
             AsyncImage(url: thumbnailURL) { image in
                 image
                     .resizable()
-                    .aspectRatio(16/9, contentMode: .fill)
+                    .aspectRatio(contentMode: .fill)
                     .clipped()
             } placeholder: {
                 ProgressView()
                     .tint(.white)
             }
-            .frame(width: 250, height: 140)
+            .frame(width: 160.0, height: 240.0)
             .background(Color(.systemGray3))
             .clipShape(RoundedRectangle(cornerRadius: 16.0))
 
