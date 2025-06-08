@@ -1,6 +1,6 @@
-# BookFinder
+# Netgear technical assigment
 
-BookFinder is a modern SwiftUI application that searches and displays books using the Google Books API. It leverages async/await, Combine, Swift Concurrency, protocol-oriented design, and dependency injection to provide a modular and testable architecture.
+A SwiftUI application that searches and displays books using the Google Books API. It leverages async/await, Swift Concurrency, protocol-oriented design, and dependency injection to provide a modular and testable architecture. It uses the framework [Networking](https://github.com/brillcp/networking) for network calls.
 
 ## 🧩 Features
 
@@ -22,6 +22,25 @@ BookFinder is a modern SwiftUI application that searches and displays books usin
 
 ---
 
+```
+Project/
+├── BookDetailView/       // The detail view for books
+├── BookService/          // Networking leyer and API abstraction
+├── Extensions/           // Extensions, formatters, and helpers
+├── GoogleBookAPI/        // Google Book API implementations
+├── SearchView/           // The main search view for finding books
+├── UIComponents/         // Custom UI components
+```
+
+---
+
+## 🧪 Testing
+
+The project uses Swift’s modern testing tools:
+-	@Test annotations for async tests.
+-	#expect assertions for readability.
+-	MockNetworkService to isolate view models from network concerns.
+
 ## 🚀 Getting Started
 
 ### Requirements
@@ -35,5 +54,5 @@ BookFinder is a modern SwiftUI application that searches and displays books usin
 1. Clone the repo:
 
    ```bash
-   git clone https://github.com/yourusername/bookfinder.git
+   git clone https://github.com/brillcp/VG_NG_IOS_25.git
    cd bookfinder
