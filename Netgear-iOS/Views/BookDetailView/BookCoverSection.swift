@@ -11,44 +11,110 @@ struct BookCoverSection<ViewModel: BookViewModelProtocol>: View {
     let viewModel: ViewModel
 
     var body: some View {
-        VStack(spacing: 16) {
-            AsyncBookImage(viewModel: viewModel)
-                .frame(width: 160, height: 240)
-                .clipShape(RoundedRectangle.bookCornerRadius)
-
-            VStack(spacing: 8) {
-                Text(volumeInfo.title)
-                    .font(.title2.bold())
-
-                if let author = volumeInfo.authors?.first {
-                    Text(author)
-                }
-
-                if let category = volumeInfo.categories?.first {
-                    Text(category)
-                }
-
-                if let subtitle = volumeInfo.subtitle {
-                    Text(subtitle)
-                        .font(.caption.italic())
-                }
-
-                BookMetadataSection(viewModel: viewModel)
-                    .padding(.top)
-            }
-            .foregroundStyle(viewModel.color.isDark ? .white : .black)
-            .multilineTextAlignment(.center)
+        VStack(spacing: ViewMetrics.mainSpacing) {
+            bookCoverImage
+            bookInformationSection
         }
-        .padding()
+        .padding(ViewMetrics.cardPadding)
         .background(viewModel.color)
     }
 }
 
-// MARK: -
+// MARK: - View Components
+private extension BookCoverSection {
+    var bookCoverImage: some View {
+        AsyncBookImage(viewModel: viewModel)
+            .frame(
+                width: ViewMetrics.coverWidth,
+                height: ViewMetrics.coverHeight
+            )
+            .clipShape(RoundedRectangle.bookCornerRadius)
+    }
+
+    var bookInformationSection: some View {
+        VStack(spacing: ViewMetrics.textSpacing) {
+            primaryBookInfo
+            secondaryBookInfo
+            BookMetadataSection(viewModel: viewModel)
+                .padding(.top, ViewMetrics.metadataPaddingTop)
+        }
+        .foregroundStyle(adaptiveTextColor)
+        .multilineTextAlignment(.center)
+    }
+
+    @ViewBuilder
+    var primaryBookInfo: some View {
+        bookTitle
+
+        if let author = primaryAuthor {
+            authorText(author)
+        }
+
+        if let category = primaryCategory {
+            categoryText(category)
+        }
+    }
+
+    @ViewBuilder
+    var secondaryBookInfo: some View {
+        if let subtitle = volumeInfo.subtitle {
+            subtitleText(subtitle)
+        }
+    }
+
+    var bookTitle: some View {
+        Text(volumeInfo.title)
+            .font(.title2.bold())
+    }
+
+    func authorText(_ author: String) -> some View {
+        Text(author)
+            .font(.body)
+    }
+
+    func categoryText(_ category: String) -> some View {
+        Text(category)
+            .font(.callout)
+    }
+
+    func subtitleText(_ subtitle: String) -> some View {
+        Text(subtitle)
+            .font(.caption.italic())
+    }
+}
+
+// MARK: - Computed Properties
 private extension BookCoverSection {
     var volumeInfo: VolumeInfo {
         viewModel.volumeInfo
     }
+
+    var primaryAuthor: String? {
+        volumeInfo.authors?.first
+    }
+
+    var primaryCategory: String? {
+        volumeInfo.categories?.first
+    }
+
+    var adaptiveTextColor: Color {
+        viewModel.color.isDark ? .white : .black
+    }
+}
+
+// MARK: - View Metrics
+private enum ViewMetrics {
+    // MARK: Spacing
+    static let mainSpacing: CGFloat = 16
+    static let textSpacing: CGFloat = 8
+    static let metadataPaddingTop: CGFloat = 8
+
+    // MARK: Padding
+    static let cardPadding: CGFloat = 16
+
+    // MARK: Cover Image Dimensions
+    static let coverWidth: CGFloat = 160
+    static let coverHeight: CGFloat = 240
 }
 
 #Preview {
