@@ -24,60 +24,98 @@ protocol BookViewModelProtocol: ObservableObject, Identifiable {
     func hapticFeedback()
 }
 
-// MARK: -
+// MARK: - ViewModel Implementation
 final class BookViewModel {
-    private lazy var numberFormatter: NumberFormatter = {
+    // MARK: Dependencies
+    private let book: Book
+    private let session: URLSession
+    private let hapticGenerator: UIImpactFeedbackGenerator
+
+    // MARK: State
+    @Published var imageData: Data?
+
+    // MARK: Formatters
+    private lazy var priceFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         return formatter
     }()
 
-    private let haptic = UIImpactFeedbackGenerator(style: .soft)
-    private let session: URLSession
-    private let book: Book
-
-    @Published var imageData: Data?
-
+    // MARK: Initialization
     init(book: Book, session: URLSession = .shared) {
-        self.session = session
         self.book = book
-        haptic.prepare()
+        self.session = session
+        self.hapticGenerator = UIImpactFeedbackGenerator(style: .soft)
+
+        setupHapticGenerator()
     }
 }
 
-// MARK: - BookViewModelProtocol
+// MARK: - BookViewModelProtocol Conformance
 extension BookViewModel: BookViewModelProtocol {
+    // MARK: Book Properties
     var id: String { book.id }
     var volumeInfo: VolumeInfo { book.volumeInfo }
     var saleInfo: SaleInfo? { book.saleInfo }
     var searchInfo: SearchInfo? { book.searchInfo }
     var accessInfo: AccessInfo? { book.accessInfo }
 
+    // MARK: Computed Properties
     var color: Color {
-        guard let imageData, let color = UIImage(data: imageData)?.averageColor() else { return .black }
-        return color
+        extractDominantColor()
     }
 
     var priceString: String? {
-        guard let saleInfo = saleInfo,
-              let amount = saleInfo.retailPrice?.amount,
-              let price = numberFormatter.string(from: .init(value: amount))
-        else { return nil }
-        return "\(price)"
+        formatPrice()
     }
 
-    @Sendable
+    // MARK: Actions
     func loadThumbnail() async {
-        guard let url = volumeInfo.thumbnailURL else { return }
-        do {
-            let (data, _) = try await session.data(from: url)
-            imageData = data
-        } catch {
-            print("Failed to load image data: \(error)")
-        }
+        await loadImageData()
     }
 
     func hapticFeedback() {
-        haptic.impactOccurred()
+        hapticGenerator.impactOccurred()
+    }
+}
+
+// MARK: - Private Methods
+private extension BookViewModel {
+    func setupHapticGenerator() {
+        hapticGenerator.prepare()
+    }
+
+    func extractDominantColor() -> Color {
+        guard let imageData = imageData,
+              let uiImage = UIImage(data: imageData),
+              let averageColor = uiImage.averageColor() else {
+            return .black
+        }
+        return averageColor
+    }
+
+    @MainActor
+    func formatPrice() -> String? {
+        guard let saleInfo = saleInfo,
+              let amount = saleInfo.retailPrice?.amount
+        else { return nil }
+
+        return priceFormatter.string(from: NSNumber(value: amount))
+    }
+
+    @MainActor
+    func loadImageData() async {
+        guard let thumbnailURL = volumeInfo.thumbnailURL else { return }
+
+        do {
+            let (data, _) = try await session.data(from: thumbnailURL)
+            imageData = data
+        } catch {
+            handleImageLoadError(error)
+        }
+    }
+
+    func handleImageLoadError(_ error: Error) {
+        print("Failed to load thumbnail image: \(error.localizedDescription)")
     }
 }
