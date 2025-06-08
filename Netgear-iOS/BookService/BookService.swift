@@ -10,7 +10,6 @@ import Networking
 
 protocol BookServieProtocol {
     func searchBooks(query: String) async throws -> [BookViewModel]
-    func downloadImage(url: URL) async throws -> Data
 }
 
 // MARK: -
@@ -30,10 +29,5 @@ extension BookService: BookServieProtocol {
         let request = GoogleBookAPI.search(query: query)
         let response: BookResponse = try await service.request(request)
         return response.items.map { BookViewModel(book: $0) }
-    }
-
-    func downloadImage(url: URL) async throws -> Data {
-        let imageData = try Data(contentsOf: url)
-        return imageData
     }
 }
