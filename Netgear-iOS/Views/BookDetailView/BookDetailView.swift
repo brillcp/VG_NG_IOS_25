@@ -43,7 +43,7 @@ private extension BookDetailView {
             }
         }
         .coordinateSpace(name: "scroll")
-        .onPreferenceChange(ScrollOffsetPreferenceKey.self, perform: handleScrollChange)
+        .onPreferenceChange(ScrollOffsetKey.self, perform: handleScrollChange)
         .setupNavigationBar(with: viewModel.color)
     }
 
@@ -52,7 +52,7 @@ private extension BookDetailView {
             Color.clear
                 .frame(height: 0)
                 .preference(
-                    key: ScrollOffsetPreferenceKey.self,
+                    key: ScrollOffsetKey.self,
                     value: proxy.frame(in: .named("scroll")).minY
                 )
         }
@@ -148,7 +148,7 @@ private extension View {
 }
 
 // MARK: - Preference Key
-private struct ScrollOffsetPreferenceKey: PreferenceKey {
+private struct ScrollOffsetKey: PreferenceKey {
     static var defaultValue: CGFloat = .zero
     static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {}
 }
