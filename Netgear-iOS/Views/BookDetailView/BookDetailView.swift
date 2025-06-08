@@ -9,8 +9,6 @@ import SwiftUI
 
 struct BookDetailView<ViewModel: BookViewModelProtocol>: View {
     @State private var shouldShowNavBarOverlay = false
-    @State private var scrollOffset: CGFloat = 0.0
-    @State private var lastProgress: CGFloat = 0.0
 
     let viewModel: ViewModel
 
@@ -120,16 +118,6 @@ private extension BookDetailView {
 
     func clampScrollOffset(_ value: CGFloat) -> CGFloat {
         max(min(value, 0), -navigationBarHeight)
-    }
-
-    func fadeProgress(for offset: CGFloat) -> CGFloat {
-        let fadeStart: CGFloat = 0
-        let fadeEnd: CGFloat = -navigationBarHeight
-
-        guard offset <= fadeStart else { return 0 }
-
-        let progress = (offset - fadeStart) / (fadeEnd - fadeStart)
-        return min(max(progress, 0), 1)
     }
 }
 
