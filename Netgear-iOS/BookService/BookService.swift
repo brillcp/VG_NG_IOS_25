@@ -8,26 +8,41 @@
 import Foundation
 import Networking
 
-protocol BookServieProtocol {
+protocol BookServiceProtocol {
     func searchBooks(query: String) async throws -> [BookViewModel]
 }
 
-// MARK: -
+// MARK: - Service Implementation
 final class BookService {
-    private let service: Network.Service
+    private let networkService: Network.Service
 
-    init(url: URL = .googleBookAPI) {
-        let serverConfig: ServerConfig = .init(baseURL: url)
-        self.service = .init(server: serverConfig)
+    init(baseURL: URL = .googleBookAPI) {
+        let serverConfig = ServerConfig(baseURL: baseURL)
+        self.networkService = Network.Service(server: serverConfig)
     }
 }
 
-// MARK: - BookServieProtocol
-extension BookService: BookServieProtocol {
+// MARK: - BookServiceProtocol
+extension BookService: BookServiceProtocol {
     @MainActor
     func searchBooks(query: String) async throws -> [BookViewModel] {
-        let request = GoogleBookAPI.search(query: query)
-        let response: BookResponse = try await service.request(request)
-        return response.items.map { BookViewModel(book: $0) }
+        let request = createSearchRequest(for: query)
+        let response: BookResponse = try await performRequest(request)
+        return mapToViewModels(response.items)
+    }
+}
+
+// MARK: - Private Methods
+private extension BookService {
+    func createSearchRequest(for query: String) -> GoogleBookAPI {
+        GoogleBookAPI.search(query: query)
+    }
+
+    func performRequest<T: Codable>(_ request: GoogleBookAPI) async throws -> T {
+        try await networkService.request(request)
+    }
+
+    func mapToViewModels(_ books: [Book]) -> [BookViewModel] {
+        books.map { BookViewModel(book: $0) }
     }
 }
