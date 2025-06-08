@@ -71,7 +71,9 @@ The project uses Swift’s modern testing tools:
 ```bash
 git clone https://github.com/brillcp/VG_NG_IOS_25.git
 ```
-2. Launch the app from Xcode initially to install it on the simulator or device. Once it’s running, stop the execution in Xcode, then manually reopen the app from the home screen. This allows the app to run independently, providing a more realistic and performant experience without debugger overhead.
+2. Launch the app from Xcode initially to install it on a physical device.
+3. Once it’s running, stop the execution in Xcode, then manually reopen the app from the home screen.
+This allows the app to run independently, providing a more realistic and performant experience without debugger overhead.
 
 
 ## 📌 Deliverables
@@ -79,4 +81,3 @@ git clone https://github.com/brillcp/VG_NG_IOS_25.git
 - ✅ README with explanation and setup instructions
 - ✅ Modern architecture, SwiftUI-based UI
 - ✅ Test coverage and documented limitations
-- ✅ Clear rationale behind UI decisions (see “UI Design Notes”)
