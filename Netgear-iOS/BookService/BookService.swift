@@ -14,11 +14,16 @@ protocol BookServiceProtocol {
 
 // MARK: - Service Implementation
 final class BookService {
-    private let networkService: Network.Service
+    private let networkService: NetworkServiceProtocol
 
-    init(baseURL: URL = .googleBookAPI) {
+    init(networkService: NetworkServiceProtocol) {
+        self.networkService = networkService
+    }
+
+    convenience init(baseURL: URL = .googleBookAPI) {
         let serverConfig = ServerConfig(baseURL: baseURL)
-        self.networkService = Network.Service(server: serverConfig)
+        let networkService = Network.Service(server: serverConfig)
+        self.init(networkService: networkService)
     }
 }
 
@@ -39,7 +44,7 @@ private extension BookService {
     }
 
     func performRequest<T: Codable>(_ request: GoogleBookAPI) async throws -> T {
-        try await networkService.request(request)
+        try await networkService.request(request, logResponse: false)
     }
 
     func mapToViewModels(_ books: [Book]) -> [BookViewModel] {

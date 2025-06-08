@@ -137,7 +137,7 @@ extension VolumeInfo {
 extension Book {
     static var common: Book {
         .init(
-            id: "",
+            id: "id",
             volumeInfo: .common,
             saleInfo: .init(
                 country: "SE",
