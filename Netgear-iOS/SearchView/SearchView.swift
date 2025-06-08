@@ -28,6 +28,11 @@ struct SearchView<ViewModel: SearchViewModelProtocol>: View {
             )
             .onSubmit(of: .search, performSearch)
             .animation(.default, value: displayMode)
+            .alert("Search Error", isPresented: .constant(viewModel.searchState.isError)) {
+                Button("OK", action: viewModel.dismissError)
+            } message: {
+                Text(viewModel.searchState.errorMessage ?? "An unknown error occurred")
+            }
         }
     }
 }
@@ -68,23 +73,30 @@ private extension SearchView {
 
     @ViewBuilder
     var contentView: some View {
-        if viewModel.isLoading {
-            LoadingView()
-        } else if viewModel.books.isEmpty {
+        switch viewModel.searchState {
+        case .idle:
             IdleView()
-        } else {
-            booksDisplayView
+        case .searching:
+            LoadingView()
+        case .loaded(let books):
+            if books.isEmpty {
+                Text("no books…")
+            } else {
+                booksDisplayView(books: books)
+            }
+        case .failed:
+            IdleView()
         }
     }
 
     @ViewBuilder
-    var booksDisplayView: some View {
+    func booksDisplayView(books: [BookViewModel]) -> some View {
         switch displayMode {
         case .list:
-            ListView(books: viewModel.books)
+            ListView(books: books)
         case .page:
             PageView(
-                books: viewModel.books,
+                books: books,
                 selectedPage: $selectedPage
             )
         }

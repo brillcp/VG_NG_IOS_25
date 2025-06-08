@@ -9,27 +9,22 @@ import Foundation
 
 @MainActor
 protocol SearchViewModelProtocol: ObservableObject {
-    var books: [BookViewModel] { get }
-    var isLoading: Bool { get }
+    var searchState: SearchState { get set }
     var query: String { get set }
-    var hasSearched: Bool { get }
-    var errorMessage: String? { get }
 
     func search() async
     func clearSearch()
+    func dismissError()
 }
 
-// MARK: -
+// MARK: - SearchViewModel
 final class SearchViewModel {
     // MARK: Dependencies
     private let bookService: BookServiceProtocol
 
     // MARK: Published State
-    @Published var books: [BookViewModel] = []
-    @Published var isLoading = false
+    @Published var searchState: SearchState = .idle
     @Published var query = ""
-    @Published var hasSearched = false
-    @Published var errorMessage: String?
 
     // MARK: Initialization
     init(bookService: BookServiceProtocol = BookService()) {
@@ -46,6 +41,12 @@ extension SearchViewModel: SearchViewModelProtocol {
     func clearSearch() {
         resetSearchState()
     }
+
+    func dismissError() {
+        if case .failed = searchState {
+            searchState = .idle
+        }
+    }
 }
 
 // MARK: - Private Methods
@@ -54,43 +55,18 @@ private extension SearchViewModel {
     func performSearch() async {
         guard isValidQuery else { return }
 
-        prepareForSearch()
+        searchState = .searching
 
         do {
             let searchResults = try await bookService.searchBooks(query: trimmedQuery)
-            handleSearchSuccess(searchResults)
+            searchState = .loaded(searchResults)
         } catch {
-            handleSearchError(error)
+            searchState = .failed("Failed to search books: \(error.localizedDescription)")
         }
-
-        completeSearch()
-    }
-    
-    func prepareForSearch() {
-        isLoading = true
-        errorMessage = nil
-        books = []
-    }
-
-    func handleSearchSuccess(_ results: [BookViewModel]) {
-        books = results
-        hasSearched = true
-    }
-
-    func handleSearchError(_ error: Error) {
-        errorMessage = "Failed to search books: \(error.localizedDescription)"
-        books = []
-        hasSearched = true
-    }
-
-    func completeSearch() {
-        isLoading = false
     }
 
     func resetSearchState() {
-        books = []
-        hasSearched = false
-        errorMessage = nil
+        searchState = .idle
         query = ""
     }
 }
