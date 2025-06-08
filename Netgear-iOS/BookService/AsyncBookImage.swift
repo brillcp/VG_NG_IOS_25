@@ -21,6 +21,7 @@ struct AsyncBookImage: View {
                     .fill(Color.gray.opacity(0.3))
                     .overlay {
                         ProgressView()
+                            .tint(.gray)
                     }
             }
         }
@@ -31,4 +32,5 @@ struct AsyncBookImage: View {
 
 #Preview {
     AsyncBookImage(book: .init(book: .common))
+        .frame(width: 160.0, height: 240.0)
 }

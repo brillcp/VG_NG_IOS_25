@@ -8,7 +8,23 @@
 import Foundation
 import SwiftUI
 
-final class BookViewModel: ObservableObject {
+@MainActor
+protocol BookViewModelProtocol: ObservableObject, Identifiable {
+    var id: String { get }
+    var volumeInfo: VolumeInfo { get }
+    var saleInfo: SaleInfo? { get }
+    var searchInfo: SearchInfo? { get }
+    var accessInfo: AccessInfo? { get }
+    var color: Color { get }
+    var priceString: String? { get }
+    var imageData: Data? { get set }
+
+    @Sendable
+    func loadThumbnail() async
+}
+
+// MARK: -
+final class BookViewModel {
     private lazy var numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
@@ -26,8 +42,8 @@ final class BookViewModel: ObservableObject {
     }
 }
 
-// MARK: - Public properties
-extension BookViewModel: Identifiable {
+// MARK: - BookViewModelProtocol
+extension BookViewModel: BookViewModelProtocol {
     var id: String { book.id }
     var volumeInfo: VolumeInfo { book.volumeInfo }
     var saleInfo: SaleInfo? { book.saleInfo }
@@ -46,11 +62,7 @@ extension BookViewModel: Identifiable {
         else { return nil }
         return "\(price)"
     }
-}
 
-// MARK: - Public functions
-@MainActor
-extension BookViewModel {
     @Sendable
     func loadThumbnail() async {
         guard let url = volumeInfo.thumbnailURL else { return }
