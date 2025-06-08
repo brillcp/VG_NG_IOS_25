@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct BookDetailView<ViewModel: BookViewModelProtocol>: View {
-    @State private var shouldShowNavBarOverlay = false
+    @State private var scrollOffset: CGFloat = 0.0
+    @State private var lastProgress: CGFloat = 0.0
 
     let viewModel: ViewModel
 
@@ -19,7 +20,6 @@ struct BookDetailView<ViewModel: BookViewModelProtocol>: View {
             navigationBarOverlay
         }
         .onAppear(perform: viewModel.hapticFeedback)
-        .animation(.default, value: shouldShowNavBarOverlay)
     }
 }
 
@@ -86,15 +86,13 @@ private extension BookDetailView {
         }
     }
 
-    @ViewBuilder
     var navigationBarOverlay: some View {
-        if shouldShowNavBarOverlay {
-            Rectangle()
-                .fill(.ultraThinMaterial)
-                .frame(height: navigationBarHeight)
-                .transition(.opacity)
-                .ignoresSafeArea()
-        }
+        Rectangle()
+            .fill(.ultraThinMaterial)
+            .frame(height: navigationBarHeight)
+            .opacity(shouldShowNavBarOverlay ? 1 : 0)
+            .animation(.default, value: shouldShowNavBarOverlay)
+            .ignoresSafeArea()
     }
 }
 
@@ -103,21 +101,40 @@ private extension BookDetailView {
     var navigationBarHeight: CGFloat {
         UIApplication.shared.statusBarHeight
     }
+    
+    var shouldShowNavBarOverlay: Bool {
+        scrollOffset <= -navigationBarHeight * 0.2
+    }
 }
 
 // MARK: - Methods
 private extension BookDetailView {
     func handleScrollChange(_ newValue: CGFloat) {
-        let threshold: CGFloat = -navigationBarHeight / 2
-        let shouldShow = newValue < threshold
+        let clampedValue = clampScrollOffset(newValue)
+        let progress = fadeProgress(for: clampedValue)
 
-        guard shouldShow != shouldShowNavBarOverlay else { return }
+        guard shouldUpdateProgress(progress) else { return }
 
-        withAnimation { shouldShowNavBarOverlay = shouldShow }
+        scrollOffset = clampedValue
+        lastProgress = progress
     }
 
     func clampScrollOffset(_ value: CGFloat) -> CGFloat {
         max(min(value, 0), -navigationBarHeight)
+    }
+
+    func fadeProgress(for offset: CGFloat) -> CGFloat {
+        let fadeStart: CGFloat = 0
+        let fadeEnd: CGFloat = -navigationBarHeight
+
+        guard offset <= fadeStart else { return 0 }
+
+        let progress = (offset - fadeStart) / (fadeEnd - fadeStart)
+        return min(max(progress, 0), 1)
+    }
+
+    func shouldUpdateProgress(_ progress: CGFloat) -> Bool {
+        abs(progress - lastProgress) > 0.01
     }
 }
 
