@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftUIX
 
 struct BookDetailView: View {
     @State private var scrollOffset: CGFloat = 0.0
