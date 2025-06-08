@@ -34,7 +34,6 @@ private extension BookCoverSection {
     var bookInformationSection: some View {
         VStack(spacing: ViewMetrics.textSpacing) {
             primaryBookInfo
-            secondaryBookInfo
             BookMetadataSection(viewModel: viewModel)
                 .padding(.top, ViewMetrics.metadataPaddingTop)
         }
@@ -45,13 +44,10 @@ private extension BookCoverSection {
     @ViewBuilder
     var primaryBookInfo: some View {
         bookTitle
+        secondaryBookInfo
 
-        if let author = primaryAuthor {
-            authorText(author)
-        }
-
-        if let category = primaryCategory {
-            categoryText(category)
+        if let author = primaryAuthor, let category = primaryCategory {
+            authorCategoryText(author, category: category)
         }
     }
 
@@ -67,14 +63,9 @@ private extension BookCoverSection {
             .font(.title2.bold())
     }
 
-    func authorText(_ author: String) -> some View {
-        Text(author)
+    func authorCategoryText(_ author: String, category: String) -> some View {
+        Text("\(author) · \(category)")
             .font(.body)
-    }
-
-    func categoryText(_ category: String) -> some View {
-        Text(category)
-            .font(.callout)
     }
 
     func subtitleText(_ subtitle: String) -> some View {
