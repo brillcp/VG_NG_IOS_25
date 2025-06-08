@@ -21,6 +21,7 @@ protocol BookViewModelProtocol: ObservableObject, Identifiable {
 
     @Sendable
     func loadThumbnail() async
+    func hapticFeedback()
 }
 
 // MARK: -
@@ -31,6 +32,7 @@ final class BookViewModel {
         return formatter
     }()
 
+    private let haptic = UIImpactFeedbackGenerator(style: .soft)
     private let session: URLSession
     private let book: Book
 
@@ -39,6 +41,7 @@ final class BookViewModel {
     init(book: Book, session: URLSession = .shared) {
         self.session = session
         self.book = book
+        haptic.prepare()
     }
 }
 
@@ -72,5 +75,9 @@ extension BookViewModel: BookViewModelProtocol {
         } catch {
             print("Failed to load image data: \(error)")
         }
+    }
+
+    func hapticFeedback() {
+        haptic.impactOccurred()
     }
 }

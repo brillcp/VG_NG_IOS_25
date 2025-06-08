@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct BookCoverSection: View {
-    let book: BookViewModel
+struct BookCoverSection<ViewModel: BookViewModelProtocol>: View {
+    let viewModel: ViewModel
 
     var body: some View {
         VStack(spacing: 16) {
-            AsyncBookImage(book: book)
+            AsyncBookImage(viewModel: viewModel)
                 .frame(width: 160, height: 240)
                 .clipShape(RoundedRectangle.bookCornerRadius)
 
@@ -33,24 +33,24 @@ struct BookCoverSection: View {
                         .font(.caption.italic())
                 }
 
-                BookMetadataSection(book: book)
+                BookMetadataSection(viewModel: viewModel)
                     .padding(.top)
             }
-            .foregroundStyle(book.color.isDark ? .white : .black)
+            .foregroundStyle(viewModel.color.isDark ? .white : .black)
             .multilineTextAlignment(.center)
         }
         .padding()
-        .background(book.color)
+        .background(viewModel.color)
     }
 }
 
 // MARK: -
 private extension BookCoverSection {
     var volumeInfo: VolumeInfo {
-        book.volumeInfo
+        viewModel.volumeInfo
     }
 }
 
 #Preview {
-    BookCoverSection(book: .init(book: .common))
+    BookCoverSection(viewModel: BookViewModel(book: .common))
 }

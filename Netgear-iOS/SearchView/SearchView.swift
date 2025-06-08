@@ -8,38 +8,17 @@
 import SwiftUI
 
 struct SearchView<ViewModel: SearchViewModelProtocol>: View {
-    @Namespace private var namespace
-
     @State private var displayMode: DisplayMode = .page
     @State private var selectedPage = 0
 
     @ObservedObject var viewModel: ViewModel
-
-    enum DisplayMode {
-        case list, page
-    }
 
     var body: some View {
         NavigationStack {
             VStack {
                 displayToggle
                 Divider()
-
-                if viewModel.isLoading {
-                    LoadingView()
-                } else if viewModel.books.isEmpty {
-                    IdleView()
-                } else {
-                    switch displayMode {
-                    case .list:
-                        ListView(books: viewModel.books)
-                    case .page:
-                        PageView(
-                            books: viewModel.books,
-                            selectedPage: $selectedPage
-                        )
-                    }
-                }
+                contentView
             }
             .navigationTitle("Search")
             .searchable(
@@ -47,32 +26,81 @@ struct SearchView<ViewModel: SearchViewModelProtocol>: View {
                 placement: .navigationBarDrawer(displayMode: .always),
                 prompt: Text("Harry Potter, Stephen King…")
             )
-            .onSubmit(of: .search) {
-                Task { await viewModel.search() }
-            }
+            .onSubmit(of: .search, performSearch)
             .animation(.default, value: displayMode)
         }
     }
 }
 
-// MARK: -
+// MARK: - Display Mode
+extension SearchView {
+    enum DisplayMode {
+        case list, page
+
+        var icon: String {
+            switch self {
+            case .list: return "rectangle.portrait.on.rectangle.portrait"
+            case .page: return "list.bullet"
+            }
+        }
+
+        var toggled: DisplayMode {
+            switch self {
+            case .list: return .page
+            case .page: return .list
+            }
+        }
+    }
+}
+
+// MARK: - View Components
 private extension SearchView {
     var displayToggle: some View {
         HStack(spacing: 16) {
             Spacer()
-            Button {
-                switch displayMode {
-                case .list:
-                    displayMode = .page
-                case .page:
-                    displayMode = .list
-                }
-            } label: {
-                Image(systemName: displayMode == .list ?  "rectangle.portrait.on.rectangle.portrait" : "list.bullet")
+            Button(action: toggleDisplayMode) {
+                Image(systemName: displayMode.icon)
             }
         }
         .padding(.horizontal)
         .padding(.vertical, 8)
+    }
+
+    @ViewBuilder
+    var contentView: some View {
+        if viewModel.isLoading {
+            LoadingView()
+        } else if viewModel.books.isEmpty {
+            IdleView()
+        } else {
+            booksDisplayView
+        }
+    }
+
+    @ViewBuilder
+    var booksDisplayView: some View {
+        switch displayMode {
+        case .list:
+            ListView(books: viewModel.books)
+        case .page:
+            PageView(
+                books: viewModel.books,
+                selectedPage: $selectedPage
+            )
+        }
+    }
+}
+
+// MARK: - Actions
+private extension SearchView {
+    func toggleDisplayMode() {
+        displayMode = displayMode.toggled
+    }
+
+    func performSearch() {
+        Task {
+            await viewModel.search()
+        }
     }
 }
 

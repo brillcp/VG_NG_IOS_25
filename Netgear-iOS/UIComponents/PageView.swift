@@ -18,10 +18,10 @@ struct PageView: View {
             TabView(selection: $selectedPage) {
                 ForEach(Array(books.enumerated()), id: \.element.id) { index, book in
                     NavigationLink {
-                        BookDetailView(book: book)
+                        BookDetailView(viewModel: book)
                             .navigationTransition(.zoom(sourceID: book.id, in: namespace))
                     } label: {
-                        BookCoverCard(book: book)
+                        BookCoverCard(viewModel: book)
                             .matchedTransitionSource(id: book.id, in: namespace)
                     }
                     .tag(index)

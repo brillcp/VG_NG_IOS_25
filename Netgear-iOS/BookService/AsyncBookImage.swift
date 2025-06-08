@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct AsyncBookImage: View {
-    @ObservedObject var book: BookViewModel
+struct AsyncBookImage<ViewModel: BookViewModelProtocol>: View {
+    @ObservedObject var viewModel: ViewModel
 
     var body: some View {
         Group {
-            if let data = book.imageData, let uiImage = UIImage(data: data) {
+            if let data = viewModel.imageData, let uiImage = UIImage(data: data) {
                 Image(uiImage: uiImage)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -26,11 +26,11 @@ struct AsyncBookImage: View {
             }
         }
         .clipShape(RoundedRectangle.bookCornerRadius)
-        .task(book.loadThumbnail)
+        .task(viewModel.loadThumbnail)
     }
 }
 
 #Preview {
-    AsyncBookImage(book: .init(book: .common))
+    AsyncBookImage(viewModel: BookViewModel(book: Book.common))
         .frame(width: 160.0, height: 240.0)
 }

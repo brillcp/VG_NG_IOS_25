@@ -16,10 +16,10 @@ struct ListView: View {
         List {
             ForEach(books) { book in
                 NavigationLink {
-                    BookDetailView(book: book)
+                    BookDetailView(viewModel: book)
                         .navigationTransition(.zoom(sourceID: book.id, in: namespace))
                 } label: {
-                    SearchResultRow(book: book)
+                    SearchResultRow(viewModel: book)
                         .matchedTransitionSource(id: book.id, in: namespace)
                 }
             }

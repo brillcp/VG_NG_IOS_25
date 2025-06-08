@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct BookMetadataSection: View {
-    let book: BookViewModel
+struct BookMetadataSection<ViewModel: BookViewModelProtocol>: View {
+    let viewModel: ViewModel
 
     var body: some View {
         NavigationStack {
@@ -28,13 +28,13 @@ struct BookMetadataSection: View {
                 HStack {
                     navLink(
                         title: "Preview",
-                        url: book.accessInfo?.webReaderLink
+                        url: viewModel.accessInfo?.webReaderLink
                     )
                     .buttonStyle(.bordered)
 
                     navLink(
-                        title: "Buy \(book.priceString ?? "")",
-                        url: book.saleInfo?.buyLink
+                        title: "Buy \(viewModel.priceString ?? "")",
+                        url: viewModel.saleInfo?.buyLink
                     )
                     .buttonStyle(.borderedProminent)
                 }
@@ -44,7 +44,7 @@ struct BookMetadataSection: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(
                 RoundedRectangle(cornerRadius: 16.0)
-                    .fill((book.color.isDark ? Color.white : Color.black).opacity(0.2))
+                    .fill((viewModel.color.isDark ? Color.white : Color.black).opacity(0.2))
             )
         }
     }
@@ -53,7 +53,7 @@ struct BookMetadataSection: View {
 // MARK: -
 private extension BookMetadataSection {
     var volumeInfo: VolumeInfo {
-        book.volumeInfo
+        viewModel.volumeInfo
     }
 
     func navLink(title: String, url: String?) -> some View {
@@ -74,5 +74,5 @@ private extension BookMetadataSection {
 }
 
 #Preview {
-    BookMetadataSection(book: .init(book: .common))
+    BookMetadataSection(viewModel: BookViewModel(book: .common))
 }

@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-struct SearchResultRow: View {
-    let book: BookViewModel
+struct SearchResultRow<ViewModel: BookViewModelProtocol>: View {
+    let viewModel: ViewModel
 
     private var volumeInfo: VolumeInfo {
-        book.volumeInfo
+        viewModel.volumeInfo
     }
 
     var body: some View {
         HStack {
-            AsyncBookImage(book: book)
+            AsyncBookImage(viewModel: viewModel)
                 .frame(width: 64.0, height: 64.0)
 
             VStack(alignment: .leading) {
@@ -30,7 +30,7 @@ struct SearchResultRow: View {
             .font(.footnote)
             Spacer()
 
-            if let priceString = book.priceString {
+            if let priceString = viewModel.priceString {
                 Text("\(priceString)")
                     .font(.footnote)
                     .padding(6.0)
@@ -42,5 +42,5 @@ struct SearchResultRow: View {
 }
 
 #Preview {
-    SearchResultRow(book: .init(book: .common))
+    SearchResultRow(viewModel: BookViewModel(book: .common))
 }

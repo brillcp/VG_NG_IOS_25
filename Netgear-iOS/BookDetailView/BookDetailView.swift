@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct BookDetailView: View {
+struct BookDetailView<ViewModel: BookViewModelProtocol>: View {
     @State private var scrollOffset: CGFloat = 0.0
     @State private var lastProgress: CGFloat = 0.0
 
-    let book: BookViewModel
+    let viewModel: ViewModel
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -19,6 +19,7 @@ struct BookDetailView: View {
             mainScrollView
             navigationBarOverlay
         }
+        .onAppear(perform: viewModel.hapticFeedback)
     }
 }
 
@@ -26,7 +27,7 @@ struct BookDetailView: View {
 private extension BookDetailView {
     var backgroundColorView: some View {
         VStack(spacing: 0) {
-            book.color
+            viewModel.color
                 .frame(height: 180)
             Spacer()
         }
@@ -37,13 +38,13 @@ private extension BookDetailView {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 0) {
                 scrollOffsetTracker
-                BookCoverSection(book: book)
+                BookCoverSection(viewModel: viewModel)
                 bookContentSections
             }
         }
         .coordinateSpace(name: "scroll")
         .onPreferenceChange(ScrollOffsetPreferenceKey.self, perform: handleScrollChange)
-        .setupNavigationBar(with: book.color)
+        .setupNavigationBar(with: viewModel.color)
     }
 
     var scrollOffsetTracker: some View {
@@ -59,7 +60,7 @@ private extension BookDetailView {
 
     @ViewBuilder
     var bookContentSections: some View {
-        if let description = book.volumeInfo.description {
+        if let description = viewModel.volumeInfo.description {
             BookDescriptionSection(
                 title: "Description",
                 image: "quote.bubble",
@@ -68,7 +69,7 @@ private extension BookDetailView {
             .padding(.top)
         }
 
-        if let snippet = book.searchInfo?.textSnippet {
+        if let snippet = viewModel.searchInfo?.textSnippet {
             BookDescriptionSection(
                 title: "Snippet",
                 image: "text.quote",
@@ -76,7 +77,7 @@ private extension BookDetailView {
             )
         }
 
-        if let publisher = book.volumeInfo.publisher {
+        if let publisher = viewModel.volumeInfo.publisher {
             BookDescriptionSection(
                 title: "Publisher",
                 image: "building.2",
@@ -147,13 +148,11 @@ private extension View {
 }
 
 // MARK: - Preference Key
-private extension BookDetailView {
-    struct ScrollOffsetPreferenceKey: PreferenceKey {
-        static var defaultValue: CGFloat = .zero
-        static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {}
-    }
+private struct ScrollOffsetPreferenceKey: PreferenceKey {
+    static var defaultValue: CGFloat = .zero
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {}
 }
 
 #Preview {
-    BookDetailView(book: .init(book: .common))
+    BookDetailView(viewModel: BookViewModel(book: .common))
 }

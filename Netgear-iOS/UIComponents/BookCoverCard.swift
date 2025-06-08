@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-struct BookCoverCard: View {
-    @ObservedObject var book: BookViewModel
+struct BookCoverCard<ViewModel: BookViewModelProtocol>: View {
+    @ObservedObject var viewModel: ViewModel
 
     var body: some View {
         VStack(spacing: 24.0) {
-            AsyncBookImage(book: book)
+            AsyncBookImage(viewModel: viewModel)
                 .frame(width: 160.0, height: 240.0)
                 .clipShape(RoundedRectangle.bookCornerRadius)
 
-            Text(book.volumeInfo.title)
+            Text(viewModel.volumeInfo.title)
                 .font(.title2.bold())
                 .multilineTextAlignment(.center)
         }
@@ -26,5 +26,5 @@ struct BookCoverCard: View {
 }
 
 #Preview {
-    BookCoverCard(book: .init(book: .common))
+    BookCoverCard(viewModel: BookViewModel(book: .common))
 }
