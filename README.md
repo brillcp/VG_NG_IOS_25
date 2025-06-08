@@ -39,7 +39,7 @@ This is in line with the instruction:
 The TabView navigation and layout remain consistent with the assignment’s structural requirements, but the image aspect ratio has been intentionally adjusted to better reflect real-world book UIs.
 
 
-## File structure
+## 📁 File structure
 ```
 Project/
 ├── BookDetailView/       // The detail view for books
@@ -61,13 +61,22 @@ The project uses Swift’s modern testing tools:
 
 ### Requirements
 
-- Xcode 15+
-- iOS 17+
-- Swift 5.9+
+- Xcode 16+
+- iOS 18+
+- Swift 6.0+
 
 ### Installation
 
 1. Clone the repo:
-   ```bash
-   git clone https://github.com/brillcp/VG_NG_IOS_25.git
-   cd bookfinder
+```bash
+git clone https://github.com/brillcp/VG_NG_IOS_25.git
+```
+2. Launch the app from Xcode initially to install it on the simulator or device. Once it’s running, stop the execution in Xcode, then manually reopen the app from the home screen. This allows the app to run independently, providing a more realistic and performant experience without debugger overhead.
+
+
+## 📌 Deliverables
+- ✅ Public repository named VV_NG_IOS_25
+- ✅ README with explanation and setup instructions
+- ✅ Modern architecture, SwiftUI-based UI
+- ✅ Test coverage and documented limitations
+- ✅ Clear rationale behind UI decisions (see “UI Design Notes”)
