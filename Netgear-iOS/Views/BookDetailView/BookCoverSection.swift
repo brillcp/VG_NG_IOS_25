@@ -61,7 +61,7 @@ private extension BookCoverSection {
     }
 
     func authorCategoryText(_ author: String, category: String) -> some View {
-        Text("\(author) · \(category)")
+        Text("By \(author) · \(category)")
             .font(.body)
     }
 
