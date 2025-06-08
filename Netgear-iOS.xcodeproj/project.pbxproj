@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D5092F312DF58B3100C5FB02 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = D5092F302DF58B3100C5FB02 /* SwiftUIX */; };
 		D5ECD8472DF4397B00D99EF1 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = D5ECD8462DF4397B00D99EF1 /* Networking */; };
 /* End PBXBuildFile section */
 
@@ -71,7 +70,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5ECD8472DF4397B00D99EF1 /* Networking in Frameworks */,
-				D5092F312DF58B3100C5FB02 /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,7 +131,6 @@
 			name = "Netgear-iOS";
 			packageProductDependencies = (
 				D5ECD8462DF4397B00D99EF1 /* Networking */,
-				D5092F302DF58B3100C5FB02 /* SwiftUIX */,
 			);
 			productName = "Netgear-iOS";
 			productReference = D5ECD6F32DF4346400D99EF1 /* Netgear-iOS.app */;
@@ -219,7 +216,6 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				D5ECD7352DF4366500D99EF1 /* XCRemoteSwiftPackageReference "Networking" */,
-				D5092F2F2DF58B3100C5FB02 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D5ECD6F42DF4346400D99EF1 /* Products */;
@@ -590,14 +586,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D5092F2F2DF58B3100C5FB02 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		D5ECD7352DF4366500D99EF1 /* XCRemoteSwiftPackageReference "Networking" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/brillcp/Networking";
@@ -609,11 +597,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D5092F302DF58B3100C5FB02 /* SwiftUIX */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D5092F2F2DF58B3100C5FB02 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
-			productName = SwiftUIX;
-		};
 		D5ECD8462DF4397B00D99EF1 /* Networking */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D5ECD7352DF4366500D99EF1 /* XCRemoteSwiftPackageReference "Networking" */;
