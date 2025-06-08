@@ -33,14 +33,14 @@ private extension BookMetadataSection {
 
     @ViewBuilder
     var languageLabel: some View {
-        if let language = volumeInfo.language {
+        if let language = viewModel.language {
             Label(language, systemImage: "character.book.closed.fill")
         }
     }
 
     @ViewBuilder
     var publishedDateLabel: some View {
-        if let publishedDate = volumeInfo.publishedDate {
+        if let publishedDate = viewModel.publishedAt {
             Label(publishedDate, systemImage: "calendar")
         }
     }
@@ -48,7 +48,7 @@ private extension BookMetadataSection {
     @ViewBuilder
     var pageCountLabel: some View {
         if let pageCount = volumeInfo.pageCount {
-            Label("\(pageCount)", systemImage: "book.pages.fill")
+            Label("\(pageCount) pages", systemImage: "book.pages.fill")
         }
     }
 

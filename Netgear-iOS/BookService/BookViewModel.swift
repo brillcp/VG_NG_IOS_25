@@ -17,7 +17,9 @@ protocol BookViewModelProtocol: ObservableObject, Identifiable {
     var accessInfo: AccessInfo? { get }
     var color: Color { get }
     var priceString: String? { get }
-    var imageData: Data? { get set }
+    var imageData: Data? { get }
+    var language: String? { get }
+    var publishedAt: String? { get }
 
     @Sendable
     func loadThumbnail() async
@@ -33,13 +35,6 @@ final class BookViewModel {
 
     // MARK: State
     @Published var imageData: Data?
-
-    // MARK: Formatters
-    private lazy var priceFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        return formatter
-    }()
 
     // MARK: Initialization
     init(book: Book, session: URLSession = .shared) {
@@ -61,6 +56,20 @@ extension BookViewModel: BookViewModelProtocol {
     var accessInfo: AccessInfo? { book.accessInfo }
 
     // MARK: Computed Properties
+    var publishedAt: String? {
+        guard let dateString = book.volumeInfo.publishedDate,
+              let date = DateFormatters.iso8601.date(from: dateString)
+        else { return nil }
+        return DateFormatters.yearMonth.string(from: date)
+    }
+
+    var language: String? {
+        guard let lang = book.volumeInfo.language,
+              let locale = Locale(identifier: lang).localizedString(forLanguageCode: lang)?.capitalized
+        else { return nil }
+        return locale
+    }
+
     var color: Color {
         extractDominantColor()
     }
@@ -99,8 +108,7 @@ private extension BookViewModel {
         guard let saleInfo = saleInfo,
               let amount = saleInfo.retailPrice?.amount
         else { return nil }
-
-        return priceFormatter.string(from: NSNumber(value: amount))
+        return DateFormatters.price.string(from: NSNumber(value: amount))
     }
 
     @MainActor
