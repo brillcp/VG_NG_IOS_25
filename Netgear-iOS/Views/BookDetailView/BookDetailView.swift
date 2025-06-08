@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BookDetailView<ViewModel: BookViewModelProtocol>: View {
+    @State private var shouldShowNavBarOverlay = false
     @State private var scrollOffset: CGFloat = 0.0
     @State private var lastProgress: CGFloat = 0.0
 
@@ -20,6 +21,7 @@ struct BookDetailView<ViewModel: BookViewModelProtocol>: View {
             navigationBarOverlay
         }
         .onAppear(perform: viewModel.hapticFeedback)
+        .animation(.default, value: shouldShowNavBarOverlay)
     }
 }
 
@@ -86,12 +88,15 @@ private extension BookDetailView {
         }
     }
 
+    @ViewBuilder
     var navigationBarOverlay: some View {
-        Rectangle()
-            .fill(.ultraThinMaterial)
-            .frame(height: navigationBarHeight)
-            .opacity(currentFadeProgress)
-            .ignoresSafeArea()
+        if shouldShowNavBarOverlay {
+            Rectangle()
+                .fill(.ultraThinMaterial)
+                .frame(height: navigationBarHeight)
+                .transition(.opacity)
+                .ignoresSafeArea()
+        }
     }
 }
 
@@ -100,30 +105,21 @@ private extension BookDetailView {
     var navigationBarHeight: CGFloat {
         UIApplication.shared.statusBarHeight
     }
-
-    var currentFadeProgress: CGFloat {
-        fadeProgress(for: scrollOffset)
-    }
 }
 
 // MARK: - Methods
 private extension BookDetailView {
     func handleScrollChange(_ newValue: CGFloat) {
-        let clampedValue = clampScrollOffset(newValue)
-        let progress = fadeProgress(for: clampedValue)
+        let threshold: CGFloat = -navigationBarHeight / 2
+        let shouldShow = newValue < threshold
 
-        guard shouldUpdateProgress(progress) else { return }
+        guard shouldShow != shouldShowNavBarOverlay else { return }
 
-        scrollOffset = clampedValue
-        lastProgress = progress
+        withAnimation { shouldShowNavBarOverlay = shouldShow }
     }
 
     func clampScrollOffset(_ value: CGFloat) -> CGFloat {
         max(min(value, 0), -navigationBarHeight)
-    }
-
-    func shouldUpdateProgress(_ progress: CGFloat) -> Bool {
-        abs(progress - lastProgress) > 0.01
     }
 
     func fadeProgress(for offset: CGFloat) -> CGFloat {
