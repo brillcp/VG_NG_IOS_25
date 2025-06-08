@@ -15,8 +15,7 @@ struct BookCoverSection<ViewModel: BookViewModelProtocol>: View {
             bookCoverImage
             bookInformationSection
         }
-        .padding(ViewMetrics.cardPadding)
-        .background(viewModel.color)
+        .background(bookCoverBackground)
     }
 }
 
@@ -24,21 +23,19 @@ struct BookCoverSection<ViewModel: BookViewModelProtocol>: View {
 private extension BookCoverSection {
     var bookCoverImage: some View {
         AsyncBookImage(viewModel: viewModel)
-            .frame(
-                width: ViewMetrics.coverWidth,
-                height: ViewMetrics.coverHeight
-            )
-            .clipShape(RoundedRectangle.bookCornerRadius)
+            .frame(width: ViewMetrics.coverWidth, height: ViewMetrics.coverHeight)
+            .padding(.top, UIApplication.shared.statusBarHeight)
     }
 
     var bookInformationSection: some View {
         VStack(spacing: ViewMetrics.textSpacing) {
             primaryBookInfo
             BookMetadataSection(viewModel: viewModel)
-                .padding(.top, ViewMetrics.metadataPaddingTop)
+                .padding(.top)
         }
         .foregroundStyle(adaptiveTextColor)
         .multilineTextAlignment(.center)
+        .padding()
     }
 
     @ViewBuilder
@@ -51,16 +48,16 @@ private extension BookCoverSection {
         }
     }
 
+    var bookTitle: some View {
+        Text(volumeInfo.title)
+            .font(.title2.bold())
+    }
+
     @ViewBuilder
     var secondaryBookInfo: some View {
         if let subtitle = volumeInfo.subtitle {
             subtitleText(subtitle)
         }
-    }
-
-    var bookTitle: some View {
-        Text(volumeInfo.title)
-            .font(.title2.bold())
     }
 
     func authorCategoryText(_ author: String, category: String) -> some View {
@@ -71,6 +68,14 @@ private extension BookCoverSection {
     func subtitleText(_ subtitle: String) -> some View {
         Text(subtitle)
             .font(.caption.italic())
+    }
+    
+    var bookCoverBackground: some View {
+        AsyncBookImage(viewModel: viewModel)
+            .blur(radius: 12.0, opaque: true)
+            .overlay {
+                viewModel.color.isDark ? Color.black.opacity(0.5) : Color.white.opacity(0.5)
+            }
     }
 }
 
@@ -97,11 +102,7 @@ private extension BookCoverSection {
 private enum ViewMetrics {
     // MARK: Spacing
     static let mainSpacing: CGFloat = 16
-    static let textSpacing: CGFloat = 8
-    static let metadataPaddingTop: CGFloat = 8
-
-    // MARK: Padding
-    static let cardPadding: CGFloat = 16
+    static let textSpacing: CGFloat = 12
 
     // MARK: Cover Image Dimensions
     static let coverWidth: CGFloat = 160

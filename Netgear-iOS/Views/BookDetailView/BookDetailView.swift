@@ -15,7 +15,6 @@ struct BookDetailView<ViewModel: BookViewModelProtocol>: View {
 
     var body: some View {
         ZStack(alignment: .top) {
-            backgroundColorView
             mainScrollView
             navigationBarOverlay
         }
@@ -25,35 +24,26 @@ struct BookDetailView<ViewModel: BookViewModelProtocol>: View {
 
 // MARK: - View Components
 private extension BookDetailView {
-    var backgroundColorView: some View {
-        VStack(spacing: 0) {
-            viewModel.color
-                .frame(height: 180)
-            Spacer()
-        }
-        .ignoresSafeArea()
-    }
-
     var mainScrollView: some View {
         ScrollView(showsIndicators: false) {
-            VStack(spacing: 0) {
-                scrollOffsetTracker
+            VStack {
                 BookCoverSection(viewModel: viewModel)
                 bookContentSections
             }
+            .background(scrollOffsetTracker)
         }
         .coordinateSpace(name: "scroll")
         .onPreferenceChange(ScrollOffsetKey.self, perform: handleScrollChange)
         .setupNavigationBar(with: viewModel.color)
+        .edgesIgnoringSafeArea(.top)
     }
 
     var scrollOffsetTracker: some View {
-        GeometryReader { proxy in
+        GeometryReader {
             Color.clear
-                .frame(height: 0)
                 .preference(
                     key: ScrollOffsetKey.self,
-                    value: proxy.frame(in: .named("scroll")).minY
+                    value: $0.frame(in: .named("scroll")).minY
                 )
         }
     }
@@ -101,7 +91,7 @@ private extension BookDetailView {
     var navigationBarHeight: CGFloat {
         UIApplication.shared.statusBarHeight
     }
-    
+
     var shouldShowNavBarOverlay: Bool {
         scrollOffset <= -navigationBarHeight * 0.2
     }

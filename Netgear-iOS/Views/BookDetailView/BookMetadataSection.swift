@@ -11,13 +11,10 @@ struct BookMetadataSection<ViewModel: BookViewModelProtocol>: View {
     let viewModel: ViewModel
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
+        VStack(spacing: 16) {
             metadataLabels
             actionButtons
         }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(backgroundView)
     }
 }
 
@@ -34,30 +31,38 @@ private extension BookMetadataSection {
     @ViewBuilder
     var languageLabel: some View {
         if let language = viewModel.language {
-            Label(language, systemImage: "character.book.closed.fill")
+            infoLabel(
+                icon: "globe",
+                title: language
+            )
         }
     }
 
     @ViewBuilder
     var publishedDateLabel: some View {
         if let publishedDate = viewModel.publishedAt {
-            Label(publishedDate, systemImage: "calendar")
+            infoLabel(
+                icon: "calendar",
+                title: publishedDate
+            )
         }
     }
 
     @ViewBuilder
     var pageCountLabel: some View {
         if let pageCount = volumeInfo.pageCount {
-            Label("\(pageCount) pages", systemImage: "book.pages.fill")
+            infoLabel(
+                icon: "character.book.closed.fill",
+                title: "\(pageCount) pages"
+            )
         }
     }
 
     var actionButtons: some View {
-        HStack {
+        HStack(spacing: 16) {
             previewButton
             buyButton
         }
-        .frame(maxWidth: .infinity)
     }
 
     var previewButton: some View {
@@ -77,8 +82,20 @@ private extension BookMetadataSection {
     }
 
     var backgroundView: some View {
-        RoundedRectangle(cornerRadius: 16)
+        RoundedRectangle(cornerRadius: 12.0)
             .fill(backgroundOpacity)
+    }
+    
+    func infoLabel(icon: String, title: String) -> some View {
+        VStack(spacing: 8) {
+            Image(systemName: icon)
+                .font(.title2)
+            Text(title)
+                .font(.callout)
+        }
+        .frame(maxWidth: .infinity)
+        .frame(height: 84)
+        .background(backgroundView)
     }
 }
 
@@ -97,7 +114,7 @@ private extension BookMetadataSection {
 
     var backgroundOpacity: Color {
         let baseColor = viewModel.color.isDark ? Color.white : Color.black
-        return baseColor.opacity(0.2)
+        return baseColor.opacity(0.1)
     }
 }
 
@@ -105,9 +122,10 @@ private extension BookMetadataSection {
 private extension BookMetadataSection {
     func createNavigationLink(title: String, url: String?) -> some View {
         NavigationLink(destination: destinationView(for: url)) {
-            buttonLabel(title: title)
+            Text(title)
+                .frame(maxWidth: .infinity)
+                .frame(height: 34.0)
         }
-        .frame(maxWidth: .infinity)
         .disabled(url == nil)
     }
 
@@ -118,14 +136,6 @@ private extension BookMetadataSection {
             WebView(url: url)
         } else {
             EmptyView()
-        }
-    }
-
-    func buttonLabel(title: String) -> some View {
-        HStack {
-            Spacer()
-            Text(title)
-            Spacer()
         }
     }
 }
