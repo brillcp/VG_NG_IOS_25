@@ -44,15 +44,15 @@ extension SearchView {
 
         var icon: String {
             switch self {
-            case .list: return "rectangle.portrait.on.rectangle.portrait"
-            case .page: return "list.bullet"
+            case .list: "rectangle.portrait.on.rectangle.portrait"
+            case .page: "list.bullet"
             }
         }
 
         var toggled: DisplayMode {
             switch self {
-            case .list: return .page
-            case .page: return .list
+            case .list: .page
+            case .page: .list
             }
         }
     }
