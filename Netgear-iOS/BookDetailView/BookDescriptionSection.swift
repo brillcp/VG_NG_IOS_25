@@ -9,16 +9,18 @@ import SwiftUI
 
 struct BookDescriptionSection: View {
     let title: String
+    let image: String
     let subtitle: String
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(title)
+            Label(title, systemImage: image)
                 .bold()
 
             Text(subtitle)
-                .font(.caption.italic())
+                .font(.callout.italic())
                 .multilineTextAlignment(.leading)
+                .foregroundStyle(.secondary)
 
             Divider()
                 .padding(.vertical)
@@ -29,5 +31,9 @@ struct BookDescriptionSection: View {
 }
 
 #Preview {
-    BookDescriptionSection(title: "Descirption", subtitle: "Lorem ipsum")
+    BookDescriptionSection(
+        title: "Descirption",
+        image: "person.fill",
+        subtitle: "Lorem ipsum"
+    )
 }
