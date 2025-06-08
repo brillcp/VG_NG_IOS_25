@@ -142,7 +142,6 @@ private extension BookDetailView {
 private extension View {
     func setupNavigationBar(with color: Color) -> some View {
         self
-            .toolbarBackground(color, for: .navigationBar)
             .toolbarBackground(.hidden, for: .navigationBar)
             .toolbarColorScheme(color.isDark ? .dark : .light, for: .navigationBar)
     }
