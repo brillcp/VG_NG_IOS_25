@@ -68,12 +68,10 @@ The TabView navigation and layout remain consistent with the assignment’s stru
 ## 📁 File structure
 ```
 Project/
-├── BookDetailView/       // The detail view for books
 ├── BookService/          // Networking leyer and API abstraction
 ├── Extensions/           // Extensions, formatters, and helpers
 ├── GoogleBookAPI/        // Google Book API implementations
-├── SearchView/           // The main search view for finding books
-├── UIComponents/         // Custom UI components
+├── Views/                // Contains the search view and the book detail view, as well as other UI components
 ```
 
 ## 🧪 Testing
