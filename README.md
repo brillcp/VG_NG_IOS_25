@@ -35,7 +35,7 @@ This allows the app to run independently, providing a more realistic and perform
 
 
 ### Video
-https://github.com/user-attachments/assets/566edd98-c673-419a-bc6c-0b2693c95ea4
+https://github.com/user-attachments/assets/b5f65b68-e974-4cd2-a658-75360065e764
 
 
 ## 🏗 Architecture
