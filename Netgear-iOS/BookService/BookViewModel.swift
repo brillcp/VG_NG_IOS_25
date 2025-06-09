@@ -15,7 +15,6 @@ protocol BookViewModelProtocol: ObservableObject, Identifiable {
     var saleInfo: SaleInfo? { get }
     var searchInfo: SearchInfo? { get }
     var accessInfo: AccessInfo? { get }
-    var color: Color { get }
     var priceString: String? { get }
     var imageData: Data? { get }
     var language: String? { get }
@@ -84,10 +83,6 @@ extension BookViewModel: BookViewModelProtocol {
         return locale
     }
 
-    var color: Color {
-        extractDominantColor()
-    }
-
     var priceString: String? {
         formatPrice()
     }
@@ -106,15 +101,6 @@ extension BookViewModel: BookViewModelProtocol {
 private extension BookViewModel {
     func setupHapticGenerator() {
         hapticGenerator.prepare()
-    }
-
-    func extractDominantColor() -> Color {
-        guard let imageData = imageData,
-              let uiImage = UIImage(data: imageData),
-              let averageColor = uiImage.averageColor() else {
-            return .black
-        }
-        return averageColor
     }
 
     @MainActor

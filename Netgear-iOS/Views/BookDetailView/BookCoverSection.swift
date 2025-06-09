@@ -33,7 +33,7 @@ private extension BookCoverSection {
             BookMetadataSection(viewModel: viewModel)
                 .padding(.top)
         }
-        .foregroundStyle(adaptiveTextColor)
+        .foregroundStyle(.white)
         .multilineTextAlignment(.center)
         .padding()
     }
@@ -73,9 +73,7 @@ private extension BookCoverSection {
     var bookCoverBackground: some View {
         AsyncBookImage(viewModel: viewModel)
             .blur(radius: 12.0, opaque: true)
-            .overlay {
-                viewModel.color.isDark ? Color.black.opacity(0.5) : Color.white.opacity(0.5)
-            }
+            .overlay(.black.opacity(0.5))
     }
 }
 
@@ -91,10 +89,6 @@ private extension BookCoverSection {
 
     var primaryCategory: String? {
         volumeInfo.categories?.first
-    }
-
-    var adaptiveTextColor: Color {
-        viewModel.color.isDark ? .white : .black
     }
 }
 

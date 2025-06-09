@@ -35,7 +35,7 @@ private extension BookDetailView {
         }
         .coordinateSpace(name: "scroll")
         .onPreferenceChange(ScrollOffsetKey.self, perform: handleScrollChange)
-        .setupNavigationBar(with: viewModel.color)
+        .setupNavigationBar()
         .edgesIgnoringSafeArea(.top)
         .sheet(isPresented: $shouldShowDescription) {
             BookDescriptionView(description: viewModel.volumeInfo.description ?? "")
@@ -143,10 +143,10 @@ private extension BookDetailView {
 
 // MARK: - View Modifiers
 private extension View {
-    func setupNavigationBar(with color: Color) -> some View {
+    func setupNavigationBar() -> some View {
         self
             .toolbarBackground(.hidden, for: .navigationBar)
-            .toolbarColorScheme(color.isDark ? .dark : .light, for: .navigationBar)
+            .toolbarColorScheme(.dark, for: .navigationBar)
     }
 }
 

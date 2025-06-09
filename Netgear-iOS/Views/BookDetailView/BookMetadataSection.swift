@@ -113,8 +113,7 @@ private extension BookMetadataSection {
     }
 
     var backgroundOpacity: Color {
-        let baseColor = viewModel.color.isDark ? Color.white : Color.black
-        return baseColor.opacity(0.1)
+        .white.opacity(0.1)
     }
 }
 
