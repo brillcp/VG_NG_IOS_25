@@ -12,6 +12,15 @@ struct BookDescriptionView: View {
 
     let description: String
     
+    init(
+        hapticGenerator: UIImpactFeedbackGenerator = .init(),
+        description: String
+    ) {
+        self.hapticGenerator = hapticGenerator
+        self.description = description
+        hapticGenerator.prepare()
+    }
+    
     var body: some View {
         ScrollView {
             VStack {
