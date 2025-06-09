@@ -13,7 +13,7 @@ protocol SearchViewModelProtocol: ObservableObject {
     var query: String { get set }
 
     func search() async
-    func clearSearch()
+    func clearSearch(_ oldValue: String, _ newValue: String)
     func dismissError()
 }
 
@@ -38,7 +38,8 @@ extension SearchViewModel: SearchViewModelProtocol {
         await performSearch()
     }
 
-    func clearSearch() {
+    func clearSearch(_ oldValue: String, _ newValue: String) {
+        guard newValue.isEmpty else { return }
         resetSearchState()
     }
 

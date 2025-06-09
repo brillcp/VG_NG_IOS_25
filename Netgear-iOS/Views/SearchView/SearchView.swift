@@ -26,6 +26,7 @@ struct SearchView<ViewModel: SearchViewModelProtocol>: View {
                 placement: .navigationBarDrawer(displayMode: .always),
                 prompt: Text("Harry Potter, Stephen King…")
             )
+            .onChange(of: viewModel.query, viewModel.clearSearch)
             .onSubmit(of: .search, performSearch)
             .animation(.default, value: displayMode)
             .alert("Search Error", isPresented: .constant(viewModel.searchState.isError)) {

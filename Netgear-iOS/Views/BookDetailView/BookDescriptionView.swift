@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct BookDescriptionView: View {
+    private let hapticGenerator: UIImpactFeedbackGenerator
+
     let description: String
     
     var body: some View {
@@ -19,6 +21,9 @@ struct BookDescriptionView: View {
             .frame(alignment: .top)
             .padding()
             .padding(.top)
+        }
+        .onAppear {
+            hapticGenerator.impactOccurred()
         }
     }
 }
