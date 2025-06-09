@@ -14,6 +14,7 @@ struct BookDescriptionView: View {
         ScrollView {
             VStack {
                 Text(description)
+                    .italic()
             }
             .frame(alignment: .top)
             .padding()

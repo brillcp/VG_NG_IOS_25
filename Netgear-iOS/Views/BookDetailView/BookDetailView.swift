@@ -56,19 +56,20 @@ private extension BookDetailView {
 
     @ViewBuilder
     var bookContentSections: some View {
-        if let description = viewModel.volumeInfo.description {
+        if viewModel.volumeInfo.description != nil {
             Button {
-                guard viewModel.shouldShowDescription else { return }
                 shouldShowDescription.toggle()
             } label: {
                 BookDescriptionSection(
                     title: "Description",
                     image: "quote.bubble",
-                    subtitle: viewModel.descriptionTitle
+                    subtitle: viewModel.descriptionString
                 )
                 .padding(.top)
             }
             .foregroundStyle(.black)
+            .disabled(!viewModel.shouldShowDescription)
+            .buttonStyle(ScaleButtonStyle())
         }
 
         if let snippet = viewModel.searchInfo?.textSnippet {
