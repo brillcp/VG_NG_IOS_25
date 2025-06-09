@@ -20,6 +20,8 @@ protocol BookViewModelProtocol: ObservableObject, Identifiable {
     var imageData: Data? { get }
     var language: String? { get }
     var publishedAt: String? { get }
+    var shouldShowDescription: Bool { get }
+    var descriptionTitle: String { get }
 
     @Sendable
     func loadThumbnail() async
@@ -32,6 +34,7 @@ final class BookViewModel {
     private let book: Book
     private let session: URLSession
     private let hapticGenerator: UIImpactFeedbackGenerator
+    private let truncLimit: Int = 240
 
     // MARK: State
     @Published var imageData: Data?
@@ -56,6 +59,16 @@ extension BookViewModel: BookViewModelProtocol {
     var accessInfo: AccessInfo? { book.accessInfo }
 
     // MARK: Computed Properties
+    var descriptionTitle: String {
+        guard let description = volumeInfo.description else { return "" }
+        return "\(description.truncated(limit: truncLimit)) [more]"
+    }
+
+    var shouldShowDescription: Bool {
+        guard let description = volumeInfo.description, description.count > truncLimit else { return false }
+        return true
+    }
+
     var publishedAt: String? {
         guard let dateString = book.volumeInfo.publishedDate,
               let date = DateFormatters.iso8601.date(from: dateString)

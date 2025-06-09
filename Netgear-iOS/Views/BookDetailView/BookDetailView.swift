@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BookDetailView<ViewModel: BookViewModelProtocol>: View {
+    @State private var shouldShowDescription: Bool = false
     @State private var scrollOffset: CGFloat = 0.0
     @State private var lastProgress: CGFloat = 0.0
 
@@ -36,6 +37,11 @@ private extension BookDetailView {
         .onPreferenceChange(ScrollOffsetKey.self, perform: handleScrollChange)
         .setupNavigationBar(with: viewModel.color)
         .edgesIgnoringSafeArea(.top)
+        .sheet(isPresented: $shouldShowDescription) {
+            BookDescriptionView(description: viewModel.volumeInfo.description ?? "")
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.visible)
+        }
     }
 
     var scrollOffsetTracker: some View {
@@ -51,12 +57,18 @@ private extension BookDetailView {
     @ViewBuilder
     var bookContentSections: some View {
         if let description = viewModel.volumeInfo.description {
-            BookDescriptionSection(
-                title: "Description",
-                image: "quote.bubble",
-                subtitle: description
-            )
-            .padding(.top)
+            Button {
+                guard viewModel.shouldShowDescription else { return }
+                shouldShowDescription.toggle()
+            } label: {
+                BookDescriptionSection(
+                    title: "Description",
+                    image: "quote.bubble",
+                    subtitle: viewModel.descriptionTitle
+                )
+                .padding(.top)
+            }
+            .foregroundStyle(.black)
         }
 
         if let snippet = viewModel.searchInfo?.textSnippet {
