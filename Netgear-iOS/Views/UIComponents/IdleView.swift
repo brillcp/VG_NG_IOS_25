@@ -9,14 +9,26 @@ import SwiftUI
 
 struct IdleView: View {
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 20) {
+            Spacer()
             Image(systemName: "book.circle")
-                .font(.system(size: 64))
-                .fontWeight(.thin)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 100)
+                .foregroundStyle(
+                    LinearGradient(
+                        colors: [.indigo, .purple],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                )
             Text("Find books and authors")
+                .font(.title3)
+                .fontWeight(.semibold)
+                .foregroundColor(.primary)
+            Spacer()
+            Spacer()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .foregroundColor(.secondary)
     }
 }
 
