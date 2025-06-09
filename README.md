@@ -32,7 +32,7 @@ This allows the app to run independently, providing a more realistic and perform
 
 | Toggle | List view |
 |-|-|
-| ![toggle](https://github.com/user-attachments/assets/124749d9-b32a-46a5-b484-460ba9a314a1) | ![list](https://github.com/user-attachments/assets/ab097365-9ca4-4fb8-975f-837b9277289d) |
+| ![toggle](https://github.com/user-attachments/assets/5dbb7432-d583-4390-ba8c-a3a2dd46854c) | ![list](https://github.com/user-attachments/assets/783a5beb-58b8-4768-8f35-f33fc40dadb6) |
 
 
 ### Video
