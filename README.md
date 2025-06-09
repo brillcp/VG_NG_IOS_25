@@ -3,6 +3,24 @@
 A SwiftUI application that searches and displays books using the Google Books API. It leverages `async/await`, Swift Concurrency, protocol-oriented design, and dependency injection to provide a modular and testable architecture. It uses the framework [Networking](https://github.com/brillcp/networking) for network calls.
 
 
+## 🚀 Getting Started
+
+### Requirements
+
+- Xcode 16+
+- iOS 18+
+- Swift 6.0+
+
+### Installation
+
+1. Clone the repo:
+```bash
+git clone https://github.com/brillcp/VG_NG_IOS_25.git
+```
+2. Launch the app from Xcode initially to install it on a physical device.
+3. Once it’s running, stop the execution in Xcode, then manually reopen the app from the home screen.
+This allows the app to run independently, providing a more realistic and performant experience without debugger overhead.
+
 ## 🧩 Features
 
 - 🔍 Search for books using the Google Books API
@@ -56,24 +74,6 @@ The project uses Swift’s modern testing tools:
 -	`@Test` annotations for async tests.
 -	`#expect` assertions for readability.
 -	`MockNetworkService` to isolate view models from network concerns.
-
-## 🚀 Getting Started
-
-### Requirements
-
-- Xcode 16+
-- iOS 18+
-- Swift 6.0+
-
-### Installation
-
-1. Clone the repo:
-```bash
-git clone https://github.com/brillcp/VG_NG_IOS_25.git
-```
-2. Launch the app from Xcode initially to install it on a physical device.
-3. Once it’s running, stop the execution in Xcode, then manually reopen the app from the home screen.
-This allows the app to run independently, providing a more realistic and performant experience without debugger overhead.
 
 
 ## 📌 Deliverables
