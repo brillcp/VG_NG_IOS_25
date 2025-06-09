@@ -25,7 +25,6 @@ This allows the app to run independently, providing a more realistic and perform
 
 - 🔍 Search for books using the Google Books API
 - 📚 View detailed book information including title, authors, pricing, description, and thumbnail
-- 🌈 Extracts dominant colors from thumbnails for UI accenting
 - 💵 Price formatting with localized currency support
 - 🖼️ Loads thumbnails asynchronously with error handling
 
