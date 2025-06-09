@@ -30,6 +30,15 @@ This allows the app to run independently, providing a more realistic and perform
 - 🖼️ Loads thumbnails asynchronously with error handling
 
 
+| Toggle | List view |
+|-|-|
+| ![toggle](https://github.com/user-attachments/assets/124749d9-b32a-46a5-b484-460ba9a314a1) | ![list](https://github.com/user-attachments/assets/ab097365-9ca4-4fb8-975f-837b9277289d) |
+
+
+### Video
+https://github.com/user-attachments/assets/566edd98-c673-419a-bc6c-0b2693c95ea4
+
+
 ## 🏗 Architecture
 
 - **MVVM with Protocols:** `BookViewModelProtocol` defines the contract. `BookViewModel` handles image loading, formatting, and display logic.
